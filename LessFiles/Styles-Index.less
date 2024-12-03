@@ -1,0 +1,60 @@
+@primary-color: #1e90ff;
+@background-color: #1C1E26;
+@button-hover-color: darken(@primary-color, 10%);
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: @background-color;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main-container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button {
+  background-color: @primary-color;
+  color: #ffffff;
+}
+
+.signup-button:hover {
+  background-color: @button-hover-color;
+}
+
+.login-button {
+  background-color: #2c2c2c;
+  color: @primary-color;
+}
+
+.login-button:hover {
+  background-color: lighten(@background-color, 10%);
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #aaaaaa;
+}

@@ -1,17 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // التحقق من وجود المستخدم المسجل دخوله
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-  // إذا لم يكن هناك مستخدم مسجل، إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
   if (!currentUser) {
-    window.location.href = 'index.html'; // إعادة توجيه إلى الصفحة الرئيسية أو صفحة تسجيل الدخول
+    window.location.href = 'index.html'; 
   } else {
-    // عرض اسم المستخدم في العنصر المخصص (على سبيل المثال: عنصر <span id="adminName">)
     document.getElementById('adminName').textContent = currentUser.username;
   }
 
-  // **تعريف الرسوم البيانية**
-  // Age Distribution Chart
+  
   const ageCtx = document.getElementById("ageDistributionChart").getContext("2d");
   new Chart(ageCtx, {
     type: "pie",
@@ -42,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Gender Ratios Chart
   const genderCtx = document.getElementById("genderRatiosChart").getContext("2d");
   new Chart(genderCtx, {
     type: "pie",
@@ -73,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Population Bar Chart
   const popCtx = document.getElementById("populationChart").getContext("2d");
   new Chart(popCtx, {
     type: "bar",
@@ -96,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
           beginAtZero: true,
           ticks: {
             callback: function(value) {
-              return value.toLocaleString(); // Format numbers with commas
+              return value.toLocaleString(); 
             }
           }
         }
@@ -113,29 +107,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Leaflet Map
-  const map = L.map('map-container').setView([51.505, -0.09], 13); // Example: London
+  const map = L.map('map-container').setView([51.505, -0.09], 13); 
 
-  // Adding OpenStreetMap layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  // Adding a marker (pin) on the map
   const marker = L.marker([51.505, -0.09]).addTo(map);
 
-  // Popup on marker click
   marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 });
 
-// تسجيل الخروج
 document.addEventListener("DOMContentLoaded", () => {
-  const logoutButton = document.getElementById('logoutButton'); // الزر لتسجيل الخروج
+  const logoutButton = document.getElementById('logoutButton'); 
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-      localStorage.removeItem('currentUser'); // مسح بيانات المستخدم من localStorage
-      window.location.href = 'index.html'; // إعادة توجيه إلى الصفحة الرئيسية
+      localStorage.removeItem('currentUser'); 
+      window.location.href = 'index.html'; 
     });
   }
 });

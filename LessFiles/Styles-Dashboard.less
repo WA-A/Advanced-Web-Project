@@ -1,0 +1,146 @@
+@background-color: #1b2130;
+@card-color: #252c3a;
+@text-color: #ffffff;
+@accent-color: #4a90e2;
+@Logout-color:red;
+@font-family: 'Arial', sans-serif;
+
+body {
+  margin: 0;
+  font-family: @font-family;
+  background-color: @background-color;
+  color: @text-color;
+}
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+
+  .sidebar {
+    width: 250px;
+    height: 100vh; // لجعل الشريط الجانبي يمتد بطول الشاشة
+    background-color: darken(@background-color, 10%);
+    display: flex;
+    flex-direction: column; // محاذاة العناصر عمودياً
+    justify-content: space-between; // توزيع العناصر بشكل متساوٍ
+    padding: 20px;
+  
+    h2 {
+      color: lighten(@text-color, 20%);
+      margin-bottom: 60px;
+      text-align: center;
+    }
+  
+    nav {
+      flex-grow: 1; // اجعل القائمة تستهلك المساحة المتبقية
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0; // إزالة المسافة الافتراضية
+  
+        li {
+          margin: 5px 0;
+  
+          a {
+            text-decoration: none;
+            color: @text-color;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  
+    .admin {
+      text-align: center;
+  margin-top: 50px; // رفع عنصر "الأدمن" قليلاً عن الأسفل
+  display: flex;
+  align-items: center;
+  justify-content: center; // لجعل العناصر بجانب بعض
+  gap: 15px; // إضافة مسافة بين الصورة والاسم والرابط
+
+      .avatar {
+        width: 40px; // تعديل الحجم
+        height: 40px; // تعديل الحجم
+        border-radius: 50%; // لتدوير الصورة
+      }
+  
+      #logoutButton {
+        color:@Logout-color;
+        text-decoration: none;
+        margin-top: 0; // إزالة المسافة بين الصورة والرابط
+      }
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+
+    .overview {
+      
+      .map {
+        height: 300px;
+        background: lighten(@card-color, 5%); /* تغيير اللون الخلفي باستخدام lighten */
+        margin-bottom: 20px; /* مسافة بين الخريطة والعناصر أسفلها */
+      }
+      
+      #map-container {
+        width: 100%;
+        height: 100%; /* تأكد من أن الخريطة تستخدم المساحة المتاحة بالكامل */
+      }
+      
+      
+
+      .stats {
+        display: flex;
+        gap: 20px;
+
+        .stat {
+          flex: 1;
+          background-color: @card-color;
+          padding: 5px;
+          margin-bottom: 15px;
+          border-radius: 8px;
+          text-align: center;
+
+          h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 1.5rem;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .charts {
+      display: flex;
+      gap: 20px;
+
+      .chart {
+        flex: 1;
+        background-color: @card-color;
+        padding: 20px;
+        border-radius: 8px;
+        canvas {
+          width: 100%;
+        }
+      }
+    }
+
+    .bar-chart {
+      margin-top: 20px;
+      background-color: @card-color;
+      padding: 20px;
+      border-radius: 8px;
+      canvas {
+        width: 100%;
+      }
+    }
+  }
+}

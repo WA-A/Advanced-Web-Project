@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallary</title>
+  <title>Gallery</title>
   <link rel="stylesheet" href="./CssFiles/Styles-Gallary.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
   <div class="dashboard">
@@ -13,56 +12,56 @@
       <h2>Dashboard</h2>
       <nav>
         <ul>
-          <li><a href="#" class="active">Overview</a></li>
-          <li><a href="#">Village Management</a></li>
-          <li><a href="#">Chat</a></li>
-          <li><a href="#">Gallery</a></li>
+          <li><a href="Dashboard.html">Overview</a></li>
+          <li><a href="VillageManagement.html">Village Management</a></li>
+          <li><a href="Chat.html">Chat</a></li>
+          <li><a href="Gallary.html" class="active">Gallery</a></li>
         </ul>
       </nav>
       <div class="admin">
         <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-        <span id="adminName"></span>
-        <a href="#" id="logoutButton">Logout</a>
+        <div class="admin-info">
+          <span id="adminName">Admin Name</span>
+          <a href="#" id="logoutButton">Logout</a>
+        </div>
       </div>
     </aside>
 
     <main class="content">
-        <section class="Images">
-          <div class="button">
-            <button>Add New Image</button>
+      <section class="Images">
+        <div class="button">
+          <button>Add New Image</button>
+        </div>
+        <div class="ListImage">
+          <div class="Image1">
+            <img src="./Image/Quds.jpg" alt="Admin Avatar" class="avatar">
+            <p>the image Quds</p>
           </div>
-          <div class="ListImage">
-            <div class="Image1">
-              <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-              <p>Description</p>
-            </div>
-            <div class="Image1">
-              <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-              <p>Description</p>
-            </div>
-            <div class="Image1">
-              <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-              <p>Description</p>
-            </div>
-            <div class="Image1">
-              <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-              <p>Description</p>
-            </div>
-            <div class="Image1">
-              <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-              <p>Description</p>
-            </div>
-            <div class="Image1">
-              <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
-              <p>Description</p>
-            </div>
+          <div class="Image1">
+            <img src="./Image/ibrahami.jpg" alt="Admin Avatar" class="avatar">
+            <p>the image Ibrahimi Mosque</p>
           </div>
-        </section>
-      </main>
-      
+          <div class="Image1">
+            <img src="./Image/ramallaha.jpg" alt="Admin Avatar" class="avatar">
+            <p>the image Ramallah</p>
+          </div>
+          <div class="Image1">
+            <img src="./Image/hefa.jpg" alt="Admin Avatar" class="avatar">
+            <p>the image Haifa</p>
+          </div>
+          <div class="Image1">
+            <img src="./Image/jenin.jpg" alt="Admin Avatar" class="avatar">
+            <p> the image  Jenin</p>
+          </div>
+          <div class="Image1">
+            <img src="./Image/jercio.jpg" alt="Admin Avatar" class="avatar">
+            <p> the image Jericho</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    
   </div>
   <script src="./JsFiles/Styles-Gallary.js"></script>
-  
-
 </body>
 </html>

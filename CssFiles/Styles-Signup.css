@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1c1e26;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.signup-container {
+  background-color: #252836;
+  width: 400px;
+  padding: 20px;
+  color: #ffffff;
+}
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.signup-container .full-name,
+.signup-container .username,
+.signup-container .password {
+  margin-bottom: 15px;
+}
+.signup-container .full-name label,
+.signup-container .username label,
+.signup-container .password label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.signup-container .full-name input,
+.signup-container .username input,
+.signup-container .password input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #4b5563;
+  font-size: 14px;
+}
+.signup-container .full-name input:focus,
+.signup-container .username input:focus,
+.signup-container .password input:focus {
+  outline: none;
+  border: 1px solid #60a5fa;
+}
+.signup-container .full-name input::placeholder,
+.signup-container .username input::placeholder,
+.signup-container .password input::placeholder {
+  color: #4b5563;
+}
+.signup-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.signup-container button:hover {
+  background-color: #1d4ed8;
+}
+.signup-container .have-account {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+.signup-container .have-account a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+.signup-container .have-account a:hover {
+  text-decoration: underline;
+}

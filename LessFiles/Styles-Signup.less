@@ -1,0 +1,93 @@
+@background-color: #1c1e26;
+@card-color: #252836;
+@button-bg: #2563eb;
+@button-hover-bg: #1d4ed8;
+@input-bg: #ffffff;
+@placeholder-color: #4b5563;
+@text-color: #ffffff;
+@link-color: #60a5fa;
+@primary-color: #60a5fa;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: @background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-container {
+  background-color: @card-color;
+  width: 400px;
+  padding: 20px;
+  color: @text-color;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .full-name,
+  .username,
+  .password {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      background-color: @input-bg;
+      color: @placeholder-color;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border: 1px solid @primary-color;
+      }
+
+      &::placeholder {
+        color: @placeholder-color;
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: @button-bg;
+    color: @text-color;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @button-hover-bg;
+    }
+  }
+
+  .have-account {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+
+    a {
+      color: @link-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

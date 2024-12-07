@@ -1,0 +1,162 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+.dashboard .main-content {
+  flex: 1;
+  padding: 20px;
+}
+.dashboard .main-content .add-village-btn {
+  background-color: #8c94ac;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.dashboard .main-content .add-village-btn:hover {
+  background-color: #5a6479;
+}
+.dashboard .main-content .village-list {
+  margin-top: 20px;
+  background-color: #2d3748;
+  padding: 15px;
+  border-radius: 10px;
+}
+.dashboard .main-content .village-list h3 {
+  margin-bottom: 15px;
+}
+.dashboard .main-content .village-list .search-sort input,
+.dashboard .main-content .village-list .search-sort select {
+  padding: 10px;
+  border: 1px solid #4b5563;
+  border-radius: 5px;
+  background-color: #374151;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+.dashboard .main-content .village-list .search-sort input:focus,
+.dashboard .main-content .village-list .search-sort select:focus {
+  background-color: #222933;
+}
+.dashboard .main-content .village-list .search-sort input {
+  width: 99%;
+}
+.dashboard .main-content .village-list .search-sort input::placeholder {
+  color: #ffffff;
+}
+.dashboard .main-content .village-list .village-items .village-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #4b5563;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  background-color: #374151;
+}
+.dashboard .main-content .village-list .village-items .village-item:last-child {
+  border-bottom: none;
+}
+.dashboard .main-content .village-list .village-items .village-item .actions button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #8c94ac;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+.dashboard .main-content .village-list .village-items .village-item .actions button:hover {
+  background-color: #5a6479;
+}
+.dashboard .main-content .village-list .pagination {
+  margin-top: 15px;
+}
+.dashboard .main-content .village-list .pagination button {
+  padding: 5px 10px;
+  background-color: #8c94ac;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dashboard .main-content .village-list .pagination button:hover {
+  background-color: #5a6479;
+}
+.dashboard .main-content .village-list .select-pagination {
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .modal .modal-content {
+  background: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+  min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.dashboard .modal .modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .modal .modal-content form label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #ffffff;
+}
+.dashboard .modal .modal-content form input[type="text"],
+.dashboard .modal .modal-content form input[type="number"],
+.dashboard .modal .modal-content form input[type="file"] {
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  background-color: #374151;
+  color: white;
+}
+.dashboard .modal .modal-content form input[type="text"]:focus,
+.dashboard .modal .modal-content form input[type="number"]:focus,
+.dashboard .modal .modal-content form input[type="file"]:focus {
+  outline: none;
+  border-color: #353c46;
+}
+.dashboard .modal .modal-content form button {
+  padding: 10px 15px;
+  background-color: #5a6479;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.dashboard .modal .modal-content form button:hover {
+  background-color: #8c94ac;
+}
+.dashboard .close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 24px;
+  color: #aaa;
+}
+.dashboard .close:hover {
+  color: #000;
+  cursor: pointer;
+}

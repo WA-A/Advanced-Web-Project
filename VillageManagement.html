@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Village Management</title>
+    <link rel="stylesheet" href="./CssFiles/Styles-Dashboard.css" />
+    <link rel="stylesheet" href="./CssFiles/Styles-VillageManagement.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <nav>
+          <ul>
+            <li><a href="#" class="active">Overview</a></li>
+            <li><a href="VillageManagement.html">Village Management</a></li>
+            <li><a href="Chat.html">Chat</a></li>
+            <li><a href="Gallary.html">Gallery</a></li>
+          </ul>
+        </nav>
+        <div class="admin">
+          <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar" />
+          <span id="adminName"></span>
+          <a href="#" id="logoutButton">Logout</a>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <button class="add-village-btn">Add New Village</button>
+        <div class="village-list">
+          <h3>View Village List</h3>
+          <div class="search-sort">
+            <input type="text" placeholder="Search villages..." />
+            <div class="select-pagination">
+              <div class="sort-by">
+                <span>Sort by:</span>
+                <select>
+                  <option value="default">Default</option>
+                  <option value="alphabetical">Alphabetical</option>
+                </select>
+              </div>
+
+              <div class="pagination">
+                <span>Page: </span>
+                <button class="prev-btn">Prev</button>
+                <button class="next-btn">Next</button>
+              </div>
+            </div>
+          </div>
+          <div class="village-items">
+            <div class="village-item">
+              <span>Jabalia - Gaza Strip</span>
+              <div class="actions">
+                <button class="view-btn">View</button>
+                <button class="update-btn">Update Village</button>
+                <button class="delete-btn">Delete Village</button>
+                <button class="demographic-btn">Update Demographic Data</button>
+              </div>
+            </div>
+          </div>
+          <div id="addVillageModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Add New Village</h2>
+              <form>
+                <label for="villageName">Village Name:</label>
+                <input
+                  type="text"
+                  id="villageName"
+                  name="villageName"
+                  required
+                />
+
+                <label for="regionDistrict">Region/District:</label>
+                <input
+                  type="text"
+                  id="regionDistrict"
+                  name="regionDistrict"
+                  required
+                />
+
+                <label for="landArea">Land Area (sq km):</label>
+                <input type="number" id="landArea" name="landArea" />
+
+                <label for="latitude">Latitude:</label>
+                <input type="text" id="latitude" name="latitude" />
+
+                <label for="longitude">Longitude:</label>
+                <input type="text" id="longitude" name="longitude" />
+
+                <label for="uploadImage">Upload Image:</label>
+                <input type="file" id="uploadImage" name="uploadImage" />
+
+                <label for="categoriesTags">Categories/Tags:</label>
+                <input
+                  type="text"
+                  id="categoriesTags"
+                  name="categoriesTags"
+                  placeholder="e.g., rural, urban"
+                />
+                <button type="submit">Add Village</button>
+              </form>
+            </div>
+          </div>
+          <div id="viewDetailsModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Village Details</h2>
+              <p>
+                <strong>Village Name:</strong> <span id="villageName"></span>
+              </p>
+              <p>
+                <strong>Region/District:</strong>
+                <span id="villageRegion"></span>
+              </p>
+              <p>
+                <strong>Land Area (sq km):</strong>
+                <span id="villageLandArea"></span>
+              </p>
+              <p>
+                <strong>Latitude:</strong> <span id="villageLatitude"></span>
+              </p>
+              <p>
+                <strong>Longitude:</strong> <span id="villageLongitude"></span>
+              </p>
+              <p><strong>Tags:</strong> <span id="villageTags"></span></p>
+              <img id="villageImage" src="" alt="Village Image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./JsFiles/villageManagement.js"></script>
+  </body>
+</html>

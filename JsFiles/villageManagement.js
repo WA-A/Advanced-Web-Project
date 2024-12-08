@@ -185,12 +185,11 @@ document.addEventListener("DOMContentLoaded", () => {
         image,
       };
 
-      villages.push(newVillage); // Add the new village to the array
-      localStorage.setItem("villages", JSON.stringify(villages)); // Save updated villages to localStorage
-      renderVillages(villages); // Re-render the list
+      villages.push(newVillage);
+      localStorage.setItem("villages", JSON.stringify(villages));
+      renderVillages(villages);
       addVillageModal.style.display = "none";
 
-      // Reset the form
       document.getElementById("villageName").value = "";
       document.getElementById("regionDistrict").value = "";
       document.getElementById("landArea").value = "";

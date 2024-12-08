@@ -38,3 +38,5 @@ addButton.addEventListener('click', () => {
   
   imageList.appendChild(newImage);
 });
+
+

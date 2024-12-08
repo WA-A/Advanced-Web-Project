@@ -4,6 +4,8 @@
 @accent-color: #4a90e2;
 @Logout-color:red;
 @font-family: 'Arial', sans-serif;
+@button-bg: #8c94ac;
+@button-hover: #5a6479;
 
 body {
   margin: 0;
@@ -43,11 +45,14 @@ body {
 
           a {
             text-decoration: none;
-            color: @text-color;
+            color: lighten(@button-bg, 20%);
             padding: 10px;
             display: block;
             border-radius: 5px;
           }
+          a.active {
+            background-color: @button-hover; 
+        }
         }
       }
     }

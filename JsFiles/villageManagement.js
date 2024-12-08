@@ -59,10 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderVillages = (filteredVillages) => {
     villageContainer.innerHTML = "";
 
+    // Display message if no villages match the filter
     if (filteredVillages.length === 0) {
       villageContainer.innerHTML = `<p class="no-results">No villages found.</p>`;
       return;
     }
+
+    // Loop through and display each village
     filteredVillages.forEach((village, index) => {
       const villageItem = document.createElement("div");
       villageItem.classList.add("village-item");
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       villageContainer.appendChild(villageItem);
     });
 
+    // Add event listeners for "View" and "Delete" buttons
     document.querySelectorAll(".view-btn").forEach((btn) => {
       btn.addEventListener("click", (event) => {
         const index = parseInt(event.target.dataset.index, 10);
@@ -93,9 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Function to show details of a selected village
   const showVillageDetails = (index) => {
     const village = villages[index];
 
+    // Update modal with village details
     document.getElementById("villageName").textContent = village.name;
     document.getElementById("villageRegion").textContent = village.location;
     document.getElementById("villageLandArea").textContent = village.landArea;
@@ -106,39 +112,48 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("villageImage").src = village.image;
     document.getElementById("villageImage").alt = `${village.name} Image`;
 
+    // Display the details modal
     viewDetailsModal.style.display = "flex";
   };
 
+  // Function to delete a village
   const deleteVillage = (index) => {
-    villages.splice(index, 1);
-    renderVillages(villages);
+    villages.splice(index, 1); // Remove the selected village from the array
+    renderVillages(villages); // Re-render the updated list
   };
 
+  // Handle search and sorting
   const handleSearchAndSort = () => {
     const searchText = searchInput.value.toLowerCase();
+
+    // Filter villages based on search text
     let filteredVillages = villages.filter((village) =>
       village.name.toLowerCase().includes(searchText)
     );
 
+    // Sort the filtered villages if needed
     if (sortSelect.value === "alphabetical") {
       filteredVillages.sort((a, b) => a.name.localeCompare(b.name));
     }
 
+    // Render the filtered and sorted list
     renderVillages(filteredVillages);
   };
 
+  // Event listener to open the "Add Village" modal
   addVillageBtn.addEventListener("click", () => {
     addVillageModal.style.display = "flex";
   });
 
+  // Event listeners to close modals
   closeAddModalBtn.addEventListener("click", () => {
     addVillageModal.style.display = "none";
   });
-
   closeViewDetailsBtn.addEventListener("click", () => {
     viewDetailsModal.style.display = "none";
   });
 
+  // Close modals when clicking outside them
   window.addEventListener("click", (event) => {
     if (event.target === addVillageModal) {
       addVillageModal.style.display = "none";
@@ -153,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", (event) => {
       event.preventDefault();
 
+      // Collect form data
       const villageName = document.getElementById("villageName").value.trim();
       const regionDistrict = document
         .getElementById("regionDistrict")
@@ -170,11 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const imageFile = document.getElementById("uploadImage").files[0];
       const image = imageFile ? URL.createObjectURL(imageFile) : "default.jpg";
 
+      // Validate required fields
       if (!villageName || !regionDistrict) {
         alert("Please fill in both the village name and region/district.");
         return;
       }
 
+      // Create a new village object
       const newVillage = {
         name: villageName,
         location: regionDistrict,
@@ -185,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         image,
       };
 
+      // Add the new village to the list and save to local storage
       villages.push(newVillage);
       localStorage.setItem("villages", JSON.stringify(villages));
       renderVillages(villages);

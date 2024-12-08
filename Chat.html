@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat with Admins</title>
+    <link rel="stylesheet" href="CssFiles/Styles-Chat.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <h2>Chat with Admins</h2>
+      <div class="admin-search">
+        <input type="text" placeholder="Search for an admin..." />
+      </div>
+      <div class="available-admins">
+        <h3>Available Admins</h3>
+        <div class="admin-list">
+          <div class="admin-profile" data-admin="Admin1">
+            <img src="Image/user.png" alt="Admin1" />
+            <span>Admin1</span>
+          </div>
+          <div class="admin-profile" data-admin="Admin2">
+            <img src="Image/user.png" alt="Admin2" />
+            <span>Admin2</span>
+          </div>
+          <div class="admin-profile" data-admin="Admin3">
+            <img src="Image/user.png" alt="Admin3" />
+            <span>Admin3</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-box">
+        <h3>Chat with: Admin1</h3>
+        <div class="chat-window">
+          <p class="admin-message">
+            <span class="admin-name">Admin1:</span>
+            Hello! How can I assist you today?
+          </p>
+          <p class="user-message">
+            <span class="user-name">You:</span>
+            I have a question about my account.
+          </p>
+          <p class="admin-message">
+            <span class="admin-name">Admin1:</span>
+            Sure! Please provide your account details.
+          </p>
+        </div>
+        <div class="chat-input">
+          <input type="text" placeholder="Type your message..." />
+          <button>Send</button>
+        </div>
+      </div>
+    </div>
+    <script src="./JsFiles/chat.js"></script>
+  </body>
+</html>

@@ -141,3 +141,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// Active Page 
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const currentPath = window.location.pathname;
+
+  const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
+
+  sidebarLinks.forEach((link) => {
+    if (link.href.includes(currentPath)) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active"); 
+    }
+  });
+});

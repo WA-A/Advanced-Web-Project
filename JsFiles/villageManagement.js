@@ -110,3 +110,27 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("regionDistrict").value = "";
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+  if (!currentUser) {
+    window.location.href = 'index.html'; 
+  } else {
+    document.getElementById('adminName').textContent = currentUser.username;
+  }
+});
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoutButton = document.getElementById('logoutButton'); 
+  
+    if (logoutButton) {
+      logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('currentUser'); 
+        window.location.href = 'index.html'; 
+      });
+    }
+ 
+});
+
+

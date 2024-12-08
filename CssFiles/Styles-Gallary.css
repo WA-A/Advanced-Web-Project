@@ -35,10 +35,13 @@ body {
 }
 .dashboard .sidebar nav ul li a {
   text-decoration: none;
-  color: #ffffff;
+  color: #c7cbd7;
   padding: 10px;
   display: block;
   border-radius: 5px;
+}
+.dashboard .sidebar nav ul li a.active {
+  background-color: #5a6479;
 }
 .dashboard .sidebar .admin {
   text-align: center;

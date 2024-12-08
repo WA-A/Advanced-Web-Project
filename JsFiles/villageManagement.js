@@ -42,8 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteVillage(index);
       });
     });
+    updateTotalVillages();
   };
 
+  // Update the total number of villages
+  const updateTotalVillages = () => {
+    const totalVillages = villages.length; // حساب عدد القرى
+    localStorage.setItem("totalVillages", totalVillages); // تخزين العدد في localStorage
+  };
+
+  
   renderVillages(villages);
 
   const handleSearchAndSort = () => {
@@ -82,9 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderVillages(villages); // Re-render the list
   };
 
-  document
-    .querySelector("#addVillageModal form")
-    .addEventListener("submit", (event) => {
+  document.querySelector("#addVillageModal form").addEventListener("submit", (event) => {
       event.preventDefault();
 
       const villageName = document.getElementById("villageName").value.trim();
@@ -109,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("villageName").value = "";
       document.getElementById("regionDistrict").value = "";
     });
+    updateTotalVillages();
 });
 
 

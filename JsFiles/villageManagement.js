@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Update the total number of villages
   const updateTotalVillages = () => {
-    const totalVillages = villages.length; // حساب عدد القرى
-    localStorage.setItem("totalVillages", totalVillages); // تخزين العدد في localStorage
+    const totalVillages = villages.length; 
+    localStorage.setItem("totalVillages", totalVillages); 
   };
 
-  
+
   renderVillages(villages);
 
   const handleSearchAndSort = () => {

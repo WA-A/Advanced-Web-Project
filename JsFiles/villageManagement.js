@@ -91,9 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteVillage(index);
       });
     });
-    updateTotalVillages();
   };
-
 
   const showVillageDetails = (index) => {
     const village = villages[index];
@@ -115,16 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     villages.splice(index, 1);
     renderVillages(villages);
   };
-
-  // Update the total number of villages
-  const updateTotalVillages = () => {
-    const totalVillages = villages.length; 
-    localStorage.setItem("totalVillages", totalVillages); 
-  };
-
-
-  renderVillages(villages);
-
 
   const handleSearchAndSort = () => {
     const searchText = searchInput.value.toLowerCase();
@@ -160,10 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
   document
     .querySelector("#addVillageModal form")
     .addEventListener("submit", (event) => {
+
 
   // Delete Village
   const deleteVillage = (index) => {
@@ -231,10 +219,61 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 
+
+      event.preventDefault();
+
+      const villageName = document.getElementById("villageName").value.trim();
+      const regionDistrict = document
+        .getElementById("regionDistrict")
+        .value.trim();
+      const landArea =
+        parseFloat(document.getElementById("landArea").value) || 0;
+      const latitude =
+        document.getElementById("latitude").value.trim() || "N/A";
+      const longitude =
+        document.getElementById("longitude").value.trim() || "N/A";
+      const tags = document
+        .getElementById("categoriesTags")
+        .value.split(",")
+        .map((tag) => tag.trim());
+      const imageFile = document.getElementById("uploadImage").files[0];
+      const image = imageFile ? URL.createObjectURL(imageFile) : "default.jpg";
+
+      if (!villageName || !regionDistrict) {
+        alert("Please fill in both the village name and region/district.");
+        return;
+      }
+
+      const newVillage = {
+        name: villageName,
+        location: regionDistrict,
+        landArea,
+        latitude,
+        longitude,
+        tags,
+        image,
+      };
+
+      villages.push(newVillage);
+      localStorage.setItem("villages", JSON.stringify(villages));
+      renderVillages(villages);
+      addVillageModal.style.display = "none";
+
+      document.getElementById("villageName").value = "";
+      document.getElementById("regionDistrict").value = "";
+      document.getElementById("landArea").value = "";
+      document.getElementById("latitude").value = "";
+      document.getElementById("longitude").value = "";
+      document.getElementById("categoriesTags").value = "";
+      document.getElementById("uploadImage").value = "";
+    });
+
+
   searchInput.addEventListener("input", handleSearchAndSort);
   sortSelect.addEventListener("change", handleSearchAndSort);
 
   renderVillages(villages);
+
 
     updateTotalVillages();
 });
@@ -279,5 +318,6 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.remove("active"); 
     }
   });
+
 
 });

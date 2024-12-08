@@ -132,5 +132,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const totalVillagesElement = document.querySelector(".stat p"); 
+  const totalVillages = localStorage.getItem("totalVillages"); 
+
+  if (totalVillages) {
+    totalVillagesElement.textContent = totalVillages; 
+  } else {
+    totalVillagesElement.textContent = "0"; 
+  }
+});
+
+
+
+
+
 
 

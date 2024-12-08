@@ -14,6 +14,44 @@
   display: flex;
   height: 100vh;
 
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: @card-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+
+    h2 {
+      color: lighten(@text-color, 20%);
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    nav {
+      flex-grow: 1;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin: 5px 0;
+
+          a {
+            text-decoration: none;
+            color: lighten(@button-bg, 20%);
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+          }
+          a.active {
+            background-color: @button-hover; 
+        }
+        }
+      }
+    }
   .main-content {
     flex: 1;
     padding: 20px;
@@ -201,4 +239,5 @@
       cursor: pointer;
     }
   }
+}
 }

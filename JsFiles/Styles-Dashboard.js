@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       datasets: [
         {
           data: [20, 30, 25, 15, 10],
-          backgroundColor: ["#E57373", "#4A90E2", "#FFD54F", "#64B5F6", "#AB47BC"],
+          backgroundColor: ["#a74c65 ", "#2f72a3", "#D4A32C", "#3c8489", "#7056b7"],
           borderWidth: 1,
         }
       ]
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       datasets: [
         {
           data: [55, 45],
-          backgroundColor: ["#4A90E2", "#E57373"],
+          backgroundColor: ["#2f72a3", "#a74c65 "],
           borderWidth: 1,
         }
       ]
@@ -77,9 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           label: "Population",
           data: [50000, 30000, 20000, 60000, 200000, 150000, 100000, 20000],
-          backgroundColor: "#4A90E2",
-          borderColor: "#2C3E50",
-          borderWidth: 1,
+          backgroundColor: "#3c8489",
+          borderColor: "#009fa6",
+          borderWidth: 1.5,
         }
       ]
     },
@@ -107,11 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const map = L.map('map-container').setView([51.505, -0.09], 13); 
+  const map = L.map('map-container').setView([31.5, 34.4667], 10); 
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+}).addTo(map);
+
 
   const marker = L.marker([51.505, -0.09]).addTo(map);
 
@@ -128,3 +129,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const totalVillagesElement = document.querySelector(".stat p"); 
+  const totalVillages = localStorage.getItem("totalVillages"); 
+
+  if (totalVillages) {
+    totalVillagesElement.textContent = totalVillages; 
+  } else {
+    totalVillagesElement.textContent = "0"; 
+  }
+});
+
+
+// Active Page 
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const currentPath = window.location.pathname;
+
+  const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
+
+  sidebarLinks.forEach((link) => {
+    if (link.href.includes(currentPath)) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active"); 
+    }
+  });
+});
+
+
+
+
+
+
+

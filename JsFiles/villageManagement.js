@@ -91,7 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteVillage(index);
       });
     });
+    updateTotalVillages();
   };
+
 
   const showVillageDetails = (index) => {
     const village = villages[index];
@@ -113,6 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
     villages.splice(index, 1);
     renderVillages(villages);
   };
+
+  // Update the total number of villages
+  const updateTotalVillages = () => {
+    const totalVillages = villages.length; 
+    localStorage.setItem("totalVillages", totalVillages); 
+  };
+
+
+  renderVillages(villages);
+
 
   const handleSearchAndSort = () => {
     const searchText = searchInput.value.toLowerCase();
@@ -148,9 +160,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+
   document
     .querySelector("#addVillageModal form")
     .addEventListener("submit", (event) => {
+
+  // Delete Village
+  const deleteVillage = (index) => {
+    villages.splice(index, 1); // Remove the selected village
+    renderVillages(villages); // Re-render the list
+  };
+
+  document.querySelector("#addVillageModal form").addEventListener("submit", (event) => {
+
       event.preventDefault();
 
       const villageName = document.getElementById("villageName").value.trim();
@@ -199,8 +221,51 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("uploadImage").value = "";
     });
 
+
   searchInput.addEventListener("input", handleSearchAndSort);
   sortSelect.addEventListener("change", handleSearchAndSort);
 
   renderVillages(villages);
+
+    updateTotalVillages();
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+  if (!currentUser) {
+    window.location.href = 'index.html'; 
+  } else {
+    document.getElementById('adminName').textContent = currentUser.username;
+  }
+});
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoutButton = document.getElementById('logoutButton'); 
+  
+    if (logoutButton) {
+      logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('currentUser'); 
+        window.location.href = 'index.html'; 
+      });
+    }
+ 
+});
+
+
+// Active Page 
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const currentPath = window.location.pathname;
+
+  const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
+
+  sidebarLinks.forEach((link) => {
+    if (link.href.includes(currentPath)) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active"); 
+    }
+  });
+
 });

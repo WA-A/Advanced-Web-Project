@@ -5,7 +5,7 @@ const admins = [
 
 const users = JSON.parse(localStorage.getItem("users")) || [];
 
-// تسجيل الدخول
+
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", (e) => {
@@ -20,7 +20,7 @@ if (loginForm) {
     if (admin) {
       localStorage.setItem("currentUser", JSON.stringify(admin));
       alert(`Welcome Admin, ${admin.username}!`);
-      window.location.href = "Dashboard.html"; // إعادة توجيه إلى لوحة التحكم
+      window.location.href = "Dashboard.html"; 
       return;
     }
 
@@ -30,7 +30,7 @@ if (loginForm) {
     if (user) {
       localStorage.setItem("currentUser", JSON.stringify(user));
       alert(`Welcome, ${user.username}!`);
-      window.location.href = "Dashboard.html"; // إعادة توجيه إلى لوحة التحكم
+      window.location.href = "Dashboard.html"; 
     } else {
       alert("Invalid username or password! Please try again.");
     }

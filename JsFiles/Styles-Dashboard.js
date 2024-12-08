@@ -163,6 +163,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const averageLandArea = localStorage.getItem("averageLandArea");
+
+  if (averageLandArea !== null) {
+    document.getElementById("averageLandAreaDisplay").textContent = `Average Land Area: ${averageLandArea} hectares`;
+  } else {
+    document.getElementById("averageLandAreaDisplay").textContent = "No land area data available.";
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const totalUrbanAreas = localStorage.getItem("totalUrbanAreas");
+
+  if (totalUrbanAreas !== null) {
+    document.getElementById("totalUrbanAreasDisplay").textContent = `Total Number of Urban Areas: ${totalUrbanAreas}`;
+  } else {
+    document.getElementById("totalUrbanAreasDisplay").textContent = "No urban areas data available.";
+  }
+});
+
+
+
+
 
 
 

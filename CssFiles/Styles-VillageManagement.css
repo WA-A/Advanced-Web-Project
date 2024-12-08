@@ -137,6 +137,20 @@
   outline: none;
   border-color: #353c46;
 }
+.dashboard .modal .modal-content form #uploadedImagePreview #villageImage {
+  max-width: 100%;
+  /* Fit within the modal width */
+  max-height: 100%;
+  /* Fit within the modal height */
+  object-fit: contain;
+  /* Ensure the image scales while preserving its aspect ratio */
+  border-radius: 4px;
+  /* Optional: Keep rounded corners */
+  margin-top: 10px;
+  /* Add space between the image and other elements */
+  display: block;
+  /* Ensure the image is visible */
+}
 .dashboard .modal .modal-content form button {
   padding: 10px 15px;
   background-color: #5a6479;

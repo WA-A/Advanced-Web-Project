@@ -437,6 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 // Active Page
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
@@ -450,4 +451,35 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.remove("active");
     }
   });
+});
+
+
+
+
+
+// Role User or Admin
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector("a[href='VillageManagement.html']");
+
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+       
+        if (currentUser.role === "admin") {
+          window.location.href = "VillageManagement.html";
+        } 
+        
+        else if (currentUser.role === "user") {
+          window.location.href = "VillageManagementForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+
 });

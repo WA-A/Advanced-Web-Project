@@ -107,7 +107,8 @@
               <span class="close">&times;</span>
               <h2>Village Details</h2>
               <p>
-                <strong>Village Name:</strong> <span id="villageName"></span>
+                <strong>Village Name:</strong>
+                <span id="villageName"></span>
               </p>
               <p>
                 <strong>Region/District:</strong>
@@ -125,6 +126,88 @@
               </p>
               <p><strong>Tags:</strong> <span id="villageTags"></span></p>
               <img id="villageImage" src="" alt="Village Image" />
+            </div>
+          </div>
+          <div id="updateVillageModal" class="modal">
+            <div class="modal-content">
+              <span class="close update-close">&times;</span>
+              <h2>Update Village</h2>
+              <form id="updateVillageForm">
+                <label for="updateVillageName">Village Name:</label>
+                <input
+                  type="text"
+                  id="updateVillageName"
+                  name="villageName"
+                  required
+                  disabled
+                />
+
+                <label for="updateRegionDistrict">Region/District:</label>
+                <input
+                  type="text"
+                  id="updateRegionDistrict"
+                  name="regionDistrict"
+                  required
+                />
+
+                <label for="updateLandArea">Land Area (sq km):</label>
+                <input type="number" id="updateLandArea" name="landArea" />
+
+                <label for="updateLatitude">Latitude:</label>
+                <input type="text" id="updateLatitude" name="latitude" />
+
+                <label for="updateLongitude">Longitude:</label>
+                <input type="text" id="updateLongitude" name="longitude" />
+
+                <label for="updateUploadImage">Upload Image:</label>
+                <input type="file" id="updateUploadImage" name="uploadImage" />
+                <button type="submit">Update Village</button>
+              </form>
+            </div>
+          </div>
+          <div id="demographicModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>
+                Add Demographic Data for
+                <span id="demographicVillageName"></span>
+              </h2>
+              <form id="demographicForm">
+                <label for="populationSize">Population Size:</label>
+                <input
+                  type="number"
+                  id="populationSize"
+                  name="populationSize"
+                  required
+                />
+
+                <label for="ageDistribution">Age Distribution:</label>
+                <input
+                  type="text"
+                  id="ageDistribution"
+                  name="ageDistribution"
+                  placeholder="e.g., 0-14: 30%, 15-64: 60%, 65+: 10%"
+                />
+
+                <label for="genderRatios">Gender Ratios:</label>
+                <input
+                  type="text"
+                  id="genderRatios"
+                  name="genderRatios"
+                  placeholder="e.g., Male: 51%, Female: 49%"
+                />
+
+                <label for="populationGrowthRate"
+                  >Population Growth Rate:</label
+                >
+                <input
+                  type="text"
+                  id="populationGrowthRate"
+                  name="populationGrowthRate"
+                />
+
+                <button type="submit">Add Demographic Data</button>
+              </form>
             </div>
           </div>
         </div>

@@ -166,74 +166,85 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelector("#addVillageModal form")
     .addEventListener("submit", (event) => {
+      // Delete Village
+      const deleteVillage = (index) => {
+        villages.splice(index, 1); // Remove the selected village
+        renderVillages(villages); // Re-render the list
+      };
 
+      document
+        .querySelector("#addVillageModal form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
 
-  // Delete Village
-  const deleteVillage = (index) => {
-    villages.splice(index, 1); // Remove the selected village
-    renderVillages(villages); // Re-render the list
-  };
+          const villageName = document
+            .getElementById("villageName")
+            .value.trim();
+          const regionDistrict = document
+            .getElementById("regionDistrict")
+            .value.trim();
+          const landArea =
+            parseFloat(document.getElementById("landArea").value) || 0;
+          const latitude =
+            document.getElementById("latitude").value.trim() || "N/A";
+          const longitude =
+            document.getElementById("longitude").value.trim() || "N/A";
+          const tags = document
+            .getElementById("categoriesTags")
+            .value.split(",")
+            .map((tag) => tag.trim());
+          const imageFile = document.getElementById("uploadImage").files[0];
+          const image = imageFile
+            ? URL.createObjectURL(imageFile)
+            : "default.jpg";
 
-  document.querySelector("#addVillageModal form").addEventListener("submit", (event) => {
-    event.preventDefault();
-  
-    const villageName = document.getElementById("villageName").value.trim();
-    const regionDistrict = document.getElementById("regionDistrict").value.trim();
-    const landArea = parseFloat(document.getElementById("landArea").value) || 0;
-    const latitude = document.getElementById("latitude").value.trim() || "N/A";
-    const longitude = document.getElementById("longitude").value.trim() || "N/A";
-    const tags = document
-      .getElementById("categoriesTags")
-      .value.split(",")
-      .map((tag) => tag.trim());
-    const imageFile = document.getElementById("uploadImage").files[0];
-    const image = imageFile ? URL.createObjectURL(imageFile) : "default.jpg";
-  
-    if (!villageName || !regionDistrict) {
-      alert("Please fill in both the village name and region/district.");
-      return;
-    }
-  
-    const newVillage = {
-      name: villageName,
-      location: regionDistrict,
-      landArea,
-      latitude,
-      longitude,
-      tags,
-      image,
-    };
-  
-    villages.push(newVillage);
-  
-    // Average Land Area
-    const totalLandArea = villages.reduce((sum, village) => sum + village.landArea, 0);
-    const averageLandArea = totalLandArea / villages.length;
-  
-    localStorage.setItem("averageLandArea", averageLandArea.toFixed(2)); 
-    localStorage.setItem("villages", JSON.stringify(villages));
-  
+          if (!villageName || !regionDistrict) {
+            alert("Please fill in both the village name and region/district.");
+            return;
+          }
 
-    // Total Number of Urban Areas
-    const urbanAreaCount = tags.filter(tag => ["urban", "city", "town", "metropolis"].includes(tag.toLowerCase())).length;
-  let totalUrbanAreas = localStorage.getItem("totalUrbanAreas") || 0;
-  totalUrbanAreas = parseInt(totalUrbanAreas) + urbanAreaCount;
-  localStorage.setItem("totalUrbanAreas", totalUrbanAreas);
-  localStorage.setItem("villages", JSON.stringify(villages));
+          const newVillage = {
+            name: villageName,
+            location: regionDistrict,
+            landArea,
+            latitude,
+            longitude,
+            tags,
+            image,
+          };
 
-    renderVillages(villages);
-    addVillageModal.style.display = "none";
-  
-    document.getElementById("villageName").value = "";
-    document.getElementById("regionDistrict").value = "";
-    document.getElementById("landArea").value = "";
-    document.getElementById("latitude").value = "";
-    document.getElementById("longitude").value = "";
-    document.getElementById("categoriesTags").value = "";
-    document.getElementById("uploadImage").value = "";
-  });
-  
+          villages.push(newVillage);
 
+          // Average Land Area
+          const totalLandArea = villages.reduce(
+            (sum, village) => sum + village.landArea,
+            0
+          );
+          const averageLandArea = totalLandArea / villages.length;
+
+          localStorage.setItem("averageLandArea", averageLandArea.toFixed(2));
+          localStorage.setItem("villages", JSON.stringify(villages));
+
+          // Total Number of Urban Areas
+          const urbanAreaCount = tags.filter((tag) =>
+            ["urban", "city", "town", "metropolis"].includes(tag.toLowerCase())
+          ).length;
+          let totalUrbanAreas = localStorage.getItem("totalUrbanAreas") || 0;
+          totalUrbanAreas = parseInt(totalUrbanAreas) + urbanAreaCount;
+          localStorage.setItem("totalUrbanAreas", totalUrbanAreas);
+          localStorage.setItem("villages", JSON.stringify(villages));
+
+          renderVillages(villages);
+          addVillageModal.style.display = "none";
+
+          document.getElementById("villageName").value = "";
+          document.getElementById("regionDistrict").value = "";
+          document.getElementById("landArea").value = "";
+          document.getElementById("latitude").value = "";
+          document.getElementById("longitude").value = "";
+          document.getElementById("categoriesTags").value = "";
+          document.getElementById("uploadImage").value = "";
+        });
 
       event.preventDefault();
 
@@ -287,45 +298,37 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("uploadImage").value = "";
     });
 
-
   searchInput.addEventListener("input", handleSearchAndSort);
   sortSelect.addEventListener("change", handleSearchAndSort);
 
   renderVillages(villages);
 
-
-    updateTotalVillages();
+  updateTotalVillages();
 });
-
-});
-
 
 document.addEventListener("DOMContentLoaded", () => {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    window.location.href = 'index.html'; 
+    window.location.href = "index.html";
   } else {
-    document.getElementById('adminName').textContent = currentUser.username;
+    document.getElementById("adminName").textContent = currentUser.username;
   }
 });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const logoutButton = document.getElementById('logoutButton'); 
-  
-    if (logoutButton) {
-      logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('currentUser'); 
-        window.location.href = 'index.html'; 
-      });
-    }
- 
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutButton = document.getElementById("logoutButton");
+
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "index.html";
+    });
+  }
 });
 
-
-// Active Page 
+// Active Page
 document.addEventListener("DOMContentLoaded", () => {
-  
   const currentPath = window.location.pathname;
 
   const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
@@ -334,9 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (link.href.includes(currentPath)) {
       link.classList.add("active");
     } else {
-      link.classList.remove("active"); 
+      link.classList.remove("active");
     }
   });
-
-
 });

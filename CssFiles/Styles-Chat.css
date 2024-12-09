@@ -4,16 +4,73 @@ body {
   background-color: #0e1626;
   color: #5a6479;
 }
-.chat-container {
-  max-width: 900px;
-  margin: 0 auto;
+.chat {
+  display: flex;
+}
+.chat .sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #252c3a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
 }
-.admin-search {
+.chat .sidebar h2 {
+  color: #8e97ab;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.chat .sidebar nav {
+  flex-grow: 1;
+}
+.chat .sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.chat .sidebar nav ul li {
+  margin: 5px 0;
+}
+.chat .sidebar nav ul li a {
+  text-decoration: none;
+  color: #c7cbd7;
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+}
+.chat .sidebar nav ul li a.active {
+  background-color: #5a6479;
+}
+.chat .sidebar .admin {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.chat .sidebar .admin .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.chat .sidebar .admin #logoutButton {
+  color: red;
+  text-decoration: none;
+  margin-top: 0;
+}
+.chat .chat-container {
+  max-width: 900px;
+  margin: 0 250px;
+  padding: 20px;
+}
+.chat .admin-search {
   margin-bottom: 15px;
 }
-.admin-search input {
-  width: 97%;
+.chat .admin-search input {
+  width: 1000px;
   padding: 11px;
   font-size: 14px;
   border: 1px solid #5a6479;
@@ -22,31 +79,32 @@ body {
   color: #5a6479;
   outline: none;
 }
-.admin-search input:focus {
+.chat .admin-search input:focus {
   border: 1px solid #007bff;
 }
-.available-admins {
+.chat .available-admins {
   background-color: #1b263b;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
+  width: 980px;
 }
-.available-admins h3 {
+.chat .available-admins h3 {
   font-size: 16px;
   margin-bottom: 10px;
   color: #fff;
 }
-.available-admins .admin-list {
+.chat .available-admins .admin-list {
   display: flex;
   justify-content: start;
   gap: 20px;
 }
-.available-admins .admin-list .admin-profile {
+.chat .available-admins .admin-list .admin-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.available-admins .admin-list .admin-profile img {
+.chat .available-admins .admin-list .admin-profile img {
   width: 40px;
   height: 40px;
   border-radius: 70%;
@@ -54,25 +112,26 @@ body {
   object-fit: cover;
   border: 2px solid #1b263b;
 }
-.available-admins .admin-list .admin-profile span {
+.chat .available-admins .admin-list .admin-profile span {
   margin-top: 5px;
   font-size: 12px;
   color: #5a6479;
   text-align: center;
   font-weight: bold;
 }
-.chat-box {
+.chat .chat-box {
   display: none;
   background-color: #1b263b;
   border-radius: 8px;
   padding: 20px;
+  width: 980px;
 }
-.chat-box h3 {
+.chat .chat-box h3 {
   font-size: 16px;
   margin-bottom: 15px;
   color: #fff;
 }
-.chat-box .chat-window {
+.chat .chat-box .chat-window {
   height: 200px;
   overflow-y: auto;
   padding: 10px;
@@ -80,25 +139,25 @@ body {
   border: 1px solid #5a6479;
   margin-bottom: 15px;
 }
-.chat-box .chat-window p {
+.chat .chat-box .chat-window p {
   margin: 10px 0;
 }
-.chat-box .chat-window p .admin-name {
+.chat .chat-box .chat-window p .admin-name {
   color: #5a6479;
 }
-.chat-box .chat-window p .user-name {
+.chat .chat-box .chat-window p .user-name {
   color: #5a6479;
 }
-.chat-box .chat-window p span {
+.chat .chat-box .chat-window p span {
   margin-bottom: 4px;
 }
-.chat-box .chat-window p.admin-message {
+.chat .chat-box .chat-window p.admin-message {
   color: #00adb5;
 }
-.chat-box .chat-window p.user-message {
+.chat .chat-box .chat-window p.user-message {
   color: #4caf50;
 }
-.chat-box .chat-input input {
+.chat .chat-box .chat-input input {
   padding: 10px;
   padding-bottom: 60px;
   font-size: 14px;
@@ -110,14 +169,14 @@ body {
   margin-bottom: 20px;
   width: 98%;
 }
-.chat-box .chat-input input::placeholder {
+.chat .chat-box .chat-input input::placeholder {
   color: #8e97ab;
   line-height: 5;
 }
-.chat-box .chat-input input:focus {
+.chat .chat-box .chat-input input:focus {
   border: 1px solid #007bff;
 }
-.chat-box .chat-input button {
+.chat .chat-box .chat-input button {
   padding: 10px 10px;
   font-size: 16px;
   border: none;
@@ -126,6 +185,6 @@ body {
   color: #fff;
   cursor: pointer;
 }
-.chat-box .chat-input button:hover {
+.chat .chat-box .chat-input button:hover {
   background-color: #3395ff;
 }

@@ -84,6 +84,7 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 <!--### 🔗 External APIs & Services (Future Enhancements)  
 - **Cloudinary**: Manage and display gallery images for villages.  
 - **Email Notifications**: Send alerts for administrative updates.  
+
 - **Notification Service**: Provide real-time notifications for changes in village data.
 
 ----->
@@ -91,3 +92,13 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 ## 🤝 Join Us in Building Stronger Communities  
 
 Together, we can transform how village data is managed and shared. Let’s create a platform that empowers communities through transparency and collaboration. Welcome to the **Villages Management System**! 🚀
+
+- **Notification Service**: Provide real-time notifications for changes in village data.-->
+
+---
+
+## 🤝 Join Us in Building Stronger Communities  
+
+Together, we can transform how village data is managed and shared. Let’s create a platform that empowers communities through transparency and collaboration. Welcome to the **Villages Management System**! 🚀
+
+

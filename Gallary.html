@@ -29,38 +29,57 @@
 
     <main class="content">
       <section class="Images">
+        <!-- Button to open modal -->
         <div class="button">
-          <button>Add New Image</button>
+          <button id="openModalButton">Add New Image</button>
         </div>
+
+        <!-- Modal for adding new image -->
+        <div id="addimageModal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Add New Image</h2>
+            <form id="addImageForm">
+              <label for="imageFile">Select Image</label>
+              <input type="file" id="imageFile" accept="image/*" required />
+
+              <label for="description">Description</label>
+              <textarea id="description" rows="3" required></textarea>
+
+              <button type="submit">Add Image</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Image List -->
         <div class="ListImage">
           <div class="Image1">
-            <img src="./Image/Quds.jpg" alt="Admin Avatar" class="avatar">
-            <p>the image Quds</p>
+            <img src="./Image/Quds.jpg" alt="Image of Quds" class="avatar">
+            <p>The image Quds</p>
           </div>
           <div class="Image1">
-            <img src="./Image/ibrahami.jpg" alt="Admin Avatar" class="avatar">
-            <p>the image Ibrahimi Mosque</p>
+            <img src="./Image/ibrahami.jpg" alt="Image of Ibrahimi Mosque" class="avatar">
+            <p>The image Ibrahimi Mosque</p>
           </div>
           <div class="Image1">
-            <img src="./Image/ramallaha.jpg" alt="Admin Avatar" class="avatar">
-            <p>the image Ramallah</p>
+            <img src="./Image/ramallaha.jpg" alt="Image of Ramallah" class="avatar">
+            <p>The image Ramallah</p>
           </div>
           <div class="Image1">
-            <img src="./Image/hefa.jpg" alt="Admin Avatar" class="avatar">
-            <p>the image Haifa</p>
+            <img src="./Image/hefa.jpg" alt="Image of Haifa" class="avatar">
+            <p>The image Haifa</p>
           </div>
           <div class="Image1">
-            <img src="./Image/jenin.jpg" alt="Admin Avatar" class="avatar">
-            <p> the image  Jenin</p>
+            <img src="./Image/jenin.jpg" alt="Image of Jenin" class="avatar">
+            <p>The image Jenin</p>
           </div>
           <div class="Image1">
-            <img src="./Image/jercio.jpg" alt="Admin Avatar" class="avatar">
-            <p> the image Jericho</p>
+            <img src="./Image/jercio.jpg" alt="Image of Jericho" class="avatar">
+            <p>The image Jericho</p>
           </div>
         </div>
       </section>
     </main>
-    
   </div>
   <script src="./JsFiles/Styles-Gallary.js"></script>
 </body>

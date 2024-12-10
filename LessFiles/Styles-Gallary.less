@@ -4,8 +4,17 @@
 @accent-color: #4a90e2;
 @Logout-color:red;
 @font-family: 'Arial', sans-serif;
+@background: #1f2937;
+@card: #2d3748;
+@text: #ffffff;
 @button-bg: #8c94ac;
 @button-hover: #5a6479;
+@input-bg: #374151;
+@input-border: #4b5563;
+@modal-bg-color: rgba(0, 0, 0, 0.5);
+@modal-content-bg: #2d3748;
+@modal-content-padding: 20px;
+@modal-content-radius: 8px;
 
 body {
   margin: 0;
@@ -83,7 +92,81 @@ body {
   .content {
     flex-grow: 1;
     padding: 20px;
-  
+       .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: @modal-bg-color;
+    align-items: center;
+    justify-content: center;
+
+    .modal-content {
+      background: @modal-content-bg;
+      padding: @modal-content-padding;
+      border-radius: @modal-content-radius;
+      width: 30%;
+      min-width: 300px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          margin-bottom: 5px;
+          font-size: 14px;
+          color: @text;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+          padding: 12px;
+          margin-bottom: 10px;
+          border: 1px solid @input-border;
+          border-radius: 4px;
+          background-color: @input-bg;
+          color: white;
+
+          &:focus {
+            outline: none;
+            border-color: darken(@input-border, 10%);
+          }
+        }
+
+        button {
+          padding: 10px 15px;
+          background-color: #5a6479;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: bold;
+
+          &:hover {
+            background-color: @button-bg;
+          }
+        }
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    color: #aaa;
+
+    &:hover {
+      color: #000;
+      cursor: pointer;
+    }
+  }
     .Images {
       margin-top: 5px;
   

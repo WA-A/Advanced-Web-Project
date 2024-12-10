@@ -163,22 +163,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+//Average Land Area
 document.addEventListener("DOMContentLoaded", () => {
   const averageLandArea = localStorage.getItem("averageLandArea");
 
   if (averageLandArea !== null) {
-    document.getElementById("averageLandAreaDisplay").textContent = `Average Land Area: ${averageLandArea} hectares`;
+    const averageLandAreaDisplay = document.getElementById("averageLandAreaDisplay");
+    if (averageLandAreaDisplay) {
+      averageLandAreaDisplay.textContent = `Average Land Area: ${averageLandArea} hectares`;
+    }
   } else {
-    document.getElementById("averageLandAreaDisplay").textContent = "No land area data available.";
+    console.log("No average land area found.");
   }
 });
 
-
+// Total Number of Urban Areas
 document.addEventListener("DOMContentLoaded", () => {
   const totalUrbanAreas = localStorage.getItem("totalUrbanAreas");
 
   if (totalUrbanAreas !== null) {
-    document.getElementById("totalUrbanAreasDisplay").textContent = `Total Number of Urban Areas: ${totalUrbanAreas}`;
+    document.getElementById("totalUrbanAreasDisplay").textContent = `${totalUrbanAreas}`;
   } else {
     document.getElementById("totalUrbanAreasDisplay").textContent = "No urban areas data available.";
   }
@@ -211,6 +215,21 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "index.html";
       }
     });
+  }
+});
+
+
+//Average Land Area
+document.addEventListener("DOMContentLoaded", () => {
+  const averageLandArea = localStorage.getItem("averageLandArea");
+
+  if (averageLandArea !== null) {
+    const averageLandAreaDisplay = document.getElementById("averageLandAreaDisplay");
+    if (averageLandAreaDisplay) {
+      averageLandAreaDisplay.textContent = `Average Land Area: ${averageLandArea} hectares`;
+    }
+  } else {
+    console.log("No average land area found.");
   }
 });
 

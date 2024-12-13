@@ -1,15 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // تحقق من المستخدم الحالي عند تحميل الصفحة
   const logoutButton = document.getElementById("logoutButton");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    window.location.href = "index.html"; // إعادة توجيه إلى صفحة تسجيل الدخول
+    window.location.href = "index.html"; 
   } else {
     document.getElementById("adminName").textContent = currentUser.username;
   }
 
-  // زر تسجيل الخروج
   if (logoutButton) {
     logoutButton.addEventListener("click", () => {
       localStorage.removeItem("currentUser");
@@ -17,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // فتح وإغلاق المودال لإضافة صورة جديدة
   const openModalButton = document.getElementById("openModalButton");
   const modal = document.getElementById("addimageModal");
   const closeModal = document.getElementById("closeModal");
@@ -38,9 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // إضافة صورة جديدة إلى القائمة
   addImageForm.addEventListener("submit", (event) => {
-    event.preventDefault(); // منع التحديث الافتراضي للصفحة
+    event.preventDefault(); 
 
     const imageFile = document.getElementById("imageFile").files[0];
     const description = document.getElementById("description").value;
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newImage.classList.add("Image1");
 
         const img = document.createElement("img");
-        img.src = reader.result; // استخدام الصورة المحملة
+        img.src = reader.result; 
         img.alt = description;
         img.classList.add("avatar");
 
@@ -63,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
         newImage.appendChild(paragraph);
 
         imageList.appendChild(newImage);
-        modal.style.display = "none"; // إغلاق المودال
-        addImageForm.reset(); // إعادة تعيين الحقول
+        modal.style.display = "none";
+        addImageForm.reset(); 
       };
       reader.readAsDataURL(imageFile);
     } else {
@@ -72,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // تمييز الصفحة النشطة في القائمة الجانبية
   const currentPath = window.location.pathname;
   const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
 
@@ -84,8 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // تحقق من دور المستخدم لتحديد الصفحة المناسبة
-  const villageManagementLink = document.querySelector("a[href='VillageManagement.html']");
+
+
+  // Role User or Admin For VillageManagement
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='VillageManagement.html']"
+  );
 
   if (villageManagementLink) {
     villageManagementLink.addEventListener("click", (event) => {
@@ -104,4 +104,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+});
+
+// Role User or Admin For Gallary
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='Gallary.html']"
+  );
+
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+        if (currentUser.role === "admin") {
+          window.location.href = "Gallary.html";
+        } else if (currentUser.role === "user") {
+          window.location.href = "GallaryForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+});
+
+
+
+  
 });

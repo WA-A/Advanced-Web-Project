@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let activeAdmin = null; // track the active admin
 
-  const messages = {
+  const messages = JSON.parse(localStorage.getItem("messages")) || {
     Admin1: [
       {
         sender: "Admin1",
@@ -81,9 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // render messages for  specific admin
+  // render messages for specific admin
   const renderMessages = (adminName) => {
-    chatMessages.innerHTML = ""; // clear previous msg
+    chatMessages.innerHTML = ""; // clear previous messages
 
     if (messages[adminName]) {
       messages[adminName].forEach((msg) => {
@@ -99,30 +99,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // send message and store it for the active admin
+  // send message and store it for the active admin or user
+  // send message and store it for the active admin or user
   const sendMessage = () => {
     const messageText = chatInputField.value.trim();
-
     if (messageText === "" || !activeAdmin) return;
 
-    //message object create
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
+      console.error("No user data found in localStorage.");
+      return;
+    }
+
+    const messageSender = currentUser.username || "Unknown"; // Use 'name' from the currentUser object
+
     const message = {
-      sender: "You",
+      sender: messageSender,
       text: messageText,
-      type: "user",
+      type: currentUser.role === "user" ? "user" : "admin",
     };
 
-    // dtore the msg
     if (!messages[activeAdmin]) {
       messages[activeAdmin] = [];
     }
     messages[activeAdmin].push(message);
 
+    // Re-render messages for the active admin
     renderMessages(activeAdmin);
 
     chatInputField.value = "";
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Save messages to local storage
+    localStorage.setItem("messages", JSON.stringify(messages));
   };
+
+  sendButton.addEventListener("click", sendMessage);
+  chatInputField.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  });
 
   sendButton.addEventListener("click", sendMessage);
   chatInputField.addEventListener("keydown", (event) => {
@@ -132,12 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
-
-// Active Page 
+// Active Page
 document.addEventListener("DOMContentLoaded", () => {
-  
   const currentPath = window.location.pathname;
 
   const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
@@ -146,37 +159,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (link.href.includes(currentPath)) {
       link.classList.add("active");
     } else {
-      link.classList.remove("active"); 
+      link.classList.remove("active");
     }
   });
 });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
-  const logoutButton = document.getElementById('logoutButton');
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const logoutButton = document.getElementById("logoutButton");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    window.location.href = 'index.html'; 
+    window.location.href = "index.html";
   } else {
-    document.getElementById('adminName').textContent = currentUser.username;
+    document.getElementById("adminName").textContent = currentUser.username;
   }
 
   if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-      localStorage.removeItem('currentUser');
-      window.location.href = 'index.html';
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "index.html";
     });
   }
 });
 
-
-
-
 // Role User or Admin
 document.addEventListener("DOMContentLoaded", () => {
-  const villageManagementLink = document.querySelector("a[href='VillageManagement.html']");
+  const villageManagementLink = document.querySelector(
+    "a[href='VillageManagement.html']"
+  );
 
   if (villageManagementLink) {
     villageManagementLink.addEventListener("click", (event) => {
@@ -185,12 +195,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
       if (currentUser) {
-       
         if (currentUser.role === "admin") {
           window.location.href = "VillageManagement.html";
-        } 
-        
-        else if (currentUser.role === "user") {
+        } else if (currentUser.role === "user") {
           window.location.href = "VillageManagementForUser.html";
         }
       } else {

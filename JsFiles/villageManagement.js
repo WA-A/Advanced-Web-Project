@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let villages = JSON.parse(localStorage.getItem("villages")) || [
+  const villages = [
     {
       name: "Jabalia",
       location: "Gaza Strip",
@@ -244,26 +244,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Function to calculate Total Urban Areas
-  const calculateTotalUrbanAreas = () => {
-    const urbanTags = ["urban", "city", "town", "metropolis"];
-    let totalUrbanAreas = 0;
+const calculateTotalUrbanAreas = () => {
+  const urbanTags = ["urban", "city", "town", "metropolis"];
+  let totalUrbanAreas = 0;
 
-    villages.forEach((village) => {
-      const villageTags = village.tags.map((tag) => tag.toLowerCase());
+  villages.forEach((village) => {
+    const villageTags = village.tags.map((tag) => tag.toLowerCase());
+    
+    const isUrban = villageTags.some((tag) => urbanTags.includes(tag.toLowerCase()));
+    if (isUrban) {
+      totalUrbanAreas++;
+    }
+  });
 
-      const isUrban = villageTags.some((tag) =>
-        urbanTags.includes(tag.toLowerCase())
-      );
-      if (isUrban) {
-        totalUrbanAreas++;
-      }
-    });
+  localStorage.setItem("totalUrbanAreas", totalUrbanAreas);
+  
+  console.log("Total Urban Areas:", totalUrbanAreas);  // طباعة النتيجة في وحدة التحكم
+  return totalUrbanAreas;
+};
 
-    localStorage.setItem("totalUrbanAreas", totalUrbanAreas);
-
-    console.log("Total Urban Areas:", totalUrbanAreas); // طباعة النتيجة في وحدة التحكم
-    return totalUrbanAreas;
-  };
 
   // Function to calculate Average Land Area
   const calculateAverageLandArea = () => {
@@ -278,9 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const averageLandArea = totalLandArea / villages.length;
 
     // Update the average land area on the page
-    document.getElementById(
-      "averageLandAreaValue"
-    ).textContent = `Average Land Area: ${averageLandArea.toFixed(2)} sq km`;
+    document.getElementById("averageLandAreaValue").textContent = `Average Land Area: ${averageLandArea.toFixed(2)} sq km`;
 
     console.log("Average Land Area:", averageLandArea.toFixed(2));
     return averageLandArea.toFixed(2);
@@ -382,8 +379,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderVillages(villages);
   calculateTotalUrbanAreas();
-  calculateAverageLandArea(); // Call this function when the page loads
+  calculateAverageLandArea();  // Call this function when the page loads
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -423,9 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Role User or Admin
 document.addEventListener("DOMContentLoaded", () => {
-  const villageManagementLink = document.querySelector(
-    "a[href='VillageManagement.html']"
-  );
+  const villageManagementLink = document.querySelector("a[href='VillageManagement.html']");
 
   if (villageManagementLink) {
     villageManagementLink.addEventListener("click", (event) => {

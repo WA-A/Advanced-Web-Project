@@ -1,79 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="./CssFiles/Styles-Dashboard.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    />
-  </head>
-  <body>
-    <div class="dashboard">
-      <aside class="sidebar">
-        <h2>Dashboard</h2>
-        <nav>
-          <ul>
-            <li><a href="Dashboard.html">Overview</a></li>
-            <li><a href="VillageManagement.html">Village Management</a></li>
-            <li><a href="Chat.html">Chat</a></li>
-            <li><a href="Gallary.html" class="active">Gallery</a></li>
-          </ul>
-        </nav>
-        <div class="admin">
-          <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar" />
-          <span id="adminName"></span>
-          <a href="#" id="logoutButton">Logout</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./CssFiles/Styles-Dashboard.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>Dashboard</h2>
+      <nav>
+        <ul>
+          <li><a href="Dashboard.html">Overview</a></li>
+          <li><a href="VillageManagement.html">Village Management</a></li>
+          <li><a href="Chat.html">Chat</a></li>
+          <li><a href="Gallary.html" class="active">Gallery</a></li>
+        </ul>
+      </nav>
+      <div class="admin">
+        <img src="./Image/Profile.png" alt="Admin Avatar" class="avatar">
+        <span id="adminName"></span>
+        <a href="#" id="logoutButton">Logout</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="overview">
+        <h2>Overview</h2>
+        <div class="map">
+          <div id="map-container"></div>
         </div>
-      </aside>
+        <div class="stats">
+          <div class="stat">
+            <h3>Total Number of Villages</h3>
+            <p></p>
+          </div>
+          <div class="stat">
+            <h3>Total Number of Urban Areas</h3>
+            <p id="totalUrbanAreasDisplay"></p>
+          </div>
+          <div class="stat">
+            <h3>Total Population Size</h3>
+            <p>660,000</p>
+          </div>
+          <div class="stat">
+            <h3>Average Land Area</h3>
+            <p id="averageLandAreaDisplay"></pه>
+          </div>
+        </div>
+      </section>
 
-      <main class="content">
-        <section class="overview">
-          <h2>Overview</h2>
-          <div class="map">
-            <div id="map-container"></div>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <h3>Total Number of Villages</h3>
-              <p>8</p>
-            </div>
-            <div class="stat">
-              <h3>Total Number of Urban Areas</h3>
-              <p id="totalUrbanAreasDisplay">3</p>
-            </div>
-            <div class="stat">
-              <h3>Total Population Size</h3>
-              <p>660,000</p>
-            </div>
-            <div class="stat">
-              <h3>Average Land Area</h3>
-              <p id="averageLandAreaDisplay">11.88</p>
-            </div>
-          </div>
-        </section>
+      <section class="charts">
+        <div class="chart">
+          <h3>Age Distribution</h3>
+          <canvas id="ageDistributionChart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Gender Ratios</h3>
+          <canvas id="genderRatiosChart"></canvas>
+        </div>
+      </section>
 
-        <section class="charts">
-          <div class="chart">
-            <h3>Age Distribution</h3>
-            <canvas id="ageDistributionChart"></canvas>
-          </div>
-          <div class="chart">
-            <h3>Gender Ratios</h3>
-            <canvas id="genderRatiosChart"></canvas>
-          </div>
-        </section>
+      <section class="bar-chart">
+        <h3>Population</h3>
+        <canvas id="populationChart"></canvas>
+      </section>
+    </main>
+  </div>
+  <script src="./JsFiles/Styles-Dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-        <section class="bar-chart">
-          <h3>Population</h3>
-          <canvas id="populationChart"></canvas>
-        </section>
-      </main>
-    </div>
-    <script src="./JsFiles/Styles-Dashboard.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  </body>
+</body>
 </html>

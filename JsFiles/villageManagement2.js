@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("totalUrbanAreas", totalUrbanAreas);
 
-    console.log("Total Urban Areas:", totalUrbanAreas); // طباعة النتيجة في وحدة التحكم
+    console.log("Total Urban Areas:", totalUrbanAreas); 
     return totalUrbanAreas;
   };
 
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Role User or Admin
+// Role User or Admin For VillageManagement
 document.addEventListener("DOMContentLoaded", () => {
   const villageManagementLink = document.querySelector(
     "a[href='VillageManagement.html']"
@@ -243,3 +243,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Role User or Admin For Gallary
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='Gallary.html']"
+  );
+
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+        if (currentUser.role === "admin") {
+          window.location.href = "Gallary.html";
+        } else if (currentUser.role === "user") {
+          window.location.href = "GallaryForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+});
+
+

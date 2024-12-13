@@ -112,6 +112,7 @@ body {
   border-color: #353c46;
 }
 .dashboard .content .modal .modal-content form button {
+  margin-top: 10px;
   padding: 10px 15px;
   background-color: #5a6479;
   color: white;

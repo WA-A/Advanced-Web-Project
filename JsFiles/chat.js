@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
   const adminProfiles = document.querySelectorAll(".admin-profile");
   const chatBox = document.querySelector(".chat-box");
@@ -207,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-=======
 document.addEventListener("DOMContentLoaded", () => {
   const adminProfiles = document.querySelectorAll(".admin-profile");
   const chatBox = document.querySelector(".chat-box");
@@ -411,4 +409,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
->>>>>>> 040408836a69c65b7f898d4ee5db0cd77e3a3c28

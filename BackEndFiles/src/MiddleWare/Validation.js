@@ -1,22 +1,26 @@
+export const Validation = (schema) => {
+    return (req, res, next) => {
+        const errorsMessage = [];
 
-export const Validation = (schema)=>{
-    const errorsMessage = [];
-   return (req,res,next)=>{
-    
-    if(req.file){
-        fileData.image = req.file
-    }
-    
-    const {error}={...req.body,...req.params,...req.query};
+        
+        if (req.file) {
+            req.body.PictureProfile = req.file;
+        }
 
-    
-    if(error){
-        error.details.forEach( err=>{
-            const key = err.context.key;
-            errorsMessage.push({[key]:err.massege});
-        })
-     return res.status(400).json({message:"validate error",errors:errorsMessage});//errors:errorsMessage
-    } 
-    next()
-}
-}
+        
+        const mergedData = { ...req.body, ...req.params, ...req.query };
+
+        
+        const { error } = schema.validate(mergedData, { abortEarly: false }); 
+        if (error) {
+            error.details.forEach(err => {
+                const key = err.context.key;
+                errorsMessage.push({ [key]: err.message }); 
+            });
+            return res.status(400).json({ message: "Validation Error", errors: errorsMessage });
+        }
+        
+       
+        next();
+    };
+};

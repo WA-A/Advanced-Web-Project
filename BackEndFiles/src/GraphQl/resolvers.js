@@ -1,28 +1,13 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import UserModel from '../Model/User.Model.js';
+import { UserResolvers } from './UserResolvers.js';
+import { VillageResolvers } from './VillageResolvers.js';
 
 export const resolvers = {
+  Query: {
+    ...UserResolvers.Query,
+    ...VillageResolvers.Query,
+  },
   Mutation: {
-    SignUp: async (_, { UserName, Email, Password }) => {
-      const existingUser = await UserModel.findOne({ Email });
-      if (existingUser) {
-        throw new Error('Email already in use');
-      }
-
-      const HashedPassword = bcrypt.hashSync(Password, parseInt(process.env.SALTROUND));
-      const CreateUser = await UserModel.create({ UserName, Email, Password: HashedPassword });
-      const token = jwt.sign({ Email }, process.env.CONFIRM_EMAILTOKEN);
-      return { message: "Success", user: CreateUser, Token: token };
-    },
-
-    SignIn: async (_, { UserName, Password }) => {
-      const user = await UserModel.findOne({ UserName });
-      if (!user || !bcrypt.compareSync(Password, user.Password)) {
-        throw new Error('Invalid credentials');
-      }
-      const token = jwt.sign({ id: user._id, role: user.Role }, process.env.LOGINSIG);
-      return { message: "Success", Token: token, user };
-    },
+    ...UserResolvers.Mutation,
+    ...VillageResolvers.Mutation,
   },
 };

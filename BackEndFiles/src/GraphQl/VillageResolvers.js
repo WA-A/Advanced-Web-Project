@@ -21,12 +21,10 @@ export const VillageResolvers = {
   },
 
   Query: {
-    getVillages: async () => {
+    getAllVillages: async () => {
       return await VillageModel.find();
     },
-    getVillageById: async (_, { id }) => {
-      return await VillageModel.findById(id);
-    },
+   
   },
 };
 

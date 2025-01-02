@@ -27,5 +27,15 @@ export const VillageTypeDefs = gql`
       ImageUrl: String 
       Categories: [String!] 
     ): Village!
+    updateVillage(
+    id: ID!
+    Name: String
+    Region: String
+    LandArea: Float
+    Latitude: Float
+    Longitude: Float
+    ImageUrl: String
+    Categories: [String]
+  ): Village!
   }
 `;

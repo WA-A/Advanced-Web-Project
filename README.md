@@ -95,10 +95,7 @@ Together, we can transform how village data is managed and shared. Let’s creat
 
 - **Notification Service**: Provide real-time notifications for changes in village data.-->
 
----
 
-## 🤝 Join Us in Building Stronger Communities  
 
-Together, we can transform how village data is managed and shared. Let’s create a platform that empowers communities through transparency and collaboration. Welcome to the **Villages Management System**! 🚀
 
 

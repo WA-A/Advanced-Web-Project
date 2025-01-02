@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import VillageModel from '../Model/Village.Model.js';
 
 export const VillageResolvers = {
@@ -31,7 +32,7 @@ export const VillageResolvers = {
             ImageUrl,
             Categories,
           },
-          { new: true }
+          { new: true } // Return the updated document
         );
 
         if (!updatedVillage) {
@@ -48,6 +49,10 @@ export const VillageResolvers = {
       { id, PopulationSize, AgeDistribution, GenderRatios, PopulationGrowthRate }
     ) => {
       try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+          throw new Error('Invalid ObjectId');
+        }
+
         const updatedVillage = await VillageModel.findByIdAndUpdate(
           id,
           {
@@ -66,6 +71,23 @@ export const VillageResolvers = {
         return updatedVillage;
       } catch (error) {
         throw new Error('Error adding demographic data: ' + error.message);
+      }
+    },
+    deleteVillage: async (_, { id }) => {
+      try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+          throw new Error('Invalid ObjectId');
+        }
+
+        const deletedVillage = await VillageModel.findByIdAndDelete(id);
+
+        if (!deletedVillage) {
+          throw new Error('Village not found');
+        }
+
+        return deletedVillage;
+      } catch (error) {
+        throw new Error('Error deleting village: ' + error.message);
       }
     },
   },

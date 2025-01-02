@@ -54,5 +54,7 @@ export const VillageTypeDefs = gql`
       GenderRatios: String
       PopulationGrowthRate: Float
     ): Village!
+    
+    deleteVillage(id: ID!): Village!
   }
 `;

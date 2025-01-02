@@ -27,6 +27,25 @@ const villageSchema = new Schema({
   Categories: {
     type: [String],
   },
+  // Demographic Data
+  DemographicData: {
+    PopulationSize: {
+      type: Number,
+      required: false, // Make it optional for now
+    },
+    AgeDistribution: {
+      type: String,
+      required: false,
+    },
+    GenderRatios: {
+      type: String,
+      required: false,
+    },
+    PopulationGrowthRate: {
+      type: Number,
+      required: false,
+    },
+  },
 });
 
 const VillageModel = model('Village', villageSchema);

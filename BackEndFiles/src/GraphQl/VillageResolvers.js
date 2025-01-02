@@ -31,7 +31,7 @@ export const VillageResolvers = {
             ImageUrl,
             Categories,
           },
-          { new: true } // Return the updated document
+          { new: true }
         );
 
         if (!updatedVillage) {
@@ -41,6 +41,31 @@ export const VillageResolvers = {
         return updatedVillage;
       } catch (error) {
         throw new Error('Error updating village: ' + error.message);
+      }
+    },
+    addDemographicData: async (
+      _,
+      { id, PopulationSize, AgeDistribution, GenderRatios, PopulationGrowthRate }
+    ) => {
+      try {
+        const updatedVillage = await VillageModel.findByIdAndUpdate(
+          id,
+          {
+            'DemographicData.PopulationSize': PopulationSize,
+            'DemographicData.AgeDistribution': AgeDistribution,
+            'DemographicData.GenderRatios': GenderRatios,
+            'DemographicData.PopulationGrowthRate': PopulationGrowthRate,
+          },
+          { new: true }
+        );
+
+        if (!updatedVillage) {
+          throw new Error('Village not found');
+        }
+
+        return updatedVillage;
+      } catch (error) {
+        throw new Error('Error adding demographic data: ' + error.message);
       }
     },
   },

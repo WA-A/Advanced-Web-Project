@@ -50,19 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const villageContainer = document.querySelector(".village-items");
   const sortSelect = document.querySelector(".sort-by select");
   const searchInput = document.querySelector(".search-sort input");
-
-  const addVillageBtn = document.querySelector(".add-village-btn");
-  const addVillageModal = document.getElementById("addVillageModal");
-  const closeAddModalBtn = addVillageModal.querySelector(".close");
-
   const viewDetailsModal = document.getElementById("viewDetailsModal");
   const closeViewDetailsBtn = viewDetailsModal.querySelector(".close");
-
-  const updateVillageModal = document.getElementById("updateVillageModal");
-  const closeUpdateModalBtn = document.querySelector(".update-close");
-
-  const demographicModal = document.getElementById("demographicModal");
-  const closeBtn = demographicModal.querySelector(".close");
 
   const renderVillages = (filteredVillages) => {
     villageContainer.innerHTML = "";
@@ -81,120 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
         <span>${village.name} - ${village.location}</span>
         <div class="actions">
           <button class="view-btn" data-index="${index}">View</button>
-          <button class="update-btn" data-index="${index}">Update Village</button>
-          <button class="delete-btn" data-index="${index}">Delete</button>
-          <button class="demographic-btn" data-index="${index}">Update Demographic Data</button>
         </div>
       `;
       villageContainer.appendChild(villageItem);
     });
 
-    document.querySelectorAll(".update-btn").forEach((btn, index) => {
-      btn.addEventListener("click", () => {
-        const village = villages[index];
-        document.getElementById("updateVillageName").value = village.name;
-        updateVillageModal.style.display = "flex";
-      });
-    });
-
-    closeUpdateModalBtn.addEventListener("click", () => {
-      updateVillageModal.style.display = "none";
-    });
-
-    document
-      .getElementById("updateVillageForm")
-      .addEventListener("submit", (event) => {
-        event.preventDefault();
-        const index = villages.findIndex(
-          (v) => v.name === document.getElementById("updateVillageName").value
-        );
-        if (index !== -1) {
-          const currentVillage = villages[index];
-          const updatedVillage = {
-            ...currentVillage,
-            location:
-              document.getElementById("updateRegionDistrict").value ||
-              currentVillage.location,
-            landArea:
-              parseFloat(document.getElementById("updateLandArea").value) ||
-              currentVillage.landArea,
-            latitude:
-              document.getElementById("updateLatitude").value ||
-              currentVillage.latitude,
-            longitude:
-              document.getElementById("updateLongitude").value ||
-              currentVillage.longitude,
-          };
-          villages[index] = updatedVillage;
-          localStorage.setItem("villages", JSON.stringify(villages));
-          renderVillages(villages);
-          alert("Village updated successfully!");
-        }
-        updateVillageModal.style.display = "none";
-      });
-
-    document.querySelectorAll(".demographic-btn").forEach((button, index) => {
-      button.addEventListener("click", () => {
-        const village = villages[index];
-        document.getElementById("demographicVillageName").textContent =
-          village.name;
-        if (village.demographics) {
-          document.getElementById("populationSize").value =
-            village.demographics.populationSize || "";
-          document.getElementById("ageDistribution").value =
-            village.demographics.ageDistribution || "";
-          document.getElementById("genderRatios").value =
-            village.demographics.genderRatios || "";
-          document.getElementById("populationGrowthRate").value =
-            village.demographics.populationGrowthRate || "";
-        } else {
-          document.getElementById("demographicForm").reset();
-        }
-        demographicModal.style.display = "flex";
-      });
-    });
-
-    closeBtn.addEventListener("click", () => {
-      demographicModal.style.display = "none";
-    });
-
-    document
-      .getElementById("demographicForm")
-      .addEventListener("submit", (event) => {
-        event.preventDefault();
-        const index = villages.findIndex(
-          (v) =>
-            v.name ===
-            document.getElementById("demographicVillageName").textContent
-        );
-        if (index !== -1) {
-          villages[index].demographics = {
-            populationSize: document.getElementById("populationSize").value,
-            ageDistribution: document.getElementById("ageDistribution").value,
-            genderRatios: document.getElementById("genderRatios").value,
-            populationGrowthRate: document.getElementById(
-              "populationGrowthRate"
-            ).value,
-          };
-          localStorage.setItem("villages", JSON.stringify(villages));
-          alert("Demographic data updated successfully!");
-        }
-
-        demographicModal.style.display = "none";
-      });
-
-    // Add event listeners for "View" and "Delete" buttons
+    // Add event listeners for "View" buttons
     document.querySelectorAll(".view-btn").forEach((btn) => {
       btn.addEventListener("click", (event) => {
         const index = parseInt(event.target.dataset.index, 10);
         showVillageDetails(index);
-      });
-    });
-
-    document.querySelectorAll(".delete-btn").forEach((btn) => {
-      btn.addEventListener("click", (event) => {
-        const index = parseInt(event.target.dataset.index, 10);
-        deleteVillage(index);
       });
     });
   };
@@ -216,13 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Display the details modal
     viewDetailsModal.style.display = "flex";
-  };
-
-  // Function to delete a village
-  const deleteVillage = (index) => {
-    villages.splice(index, 1);
-    localStorage.setItem("villages", JSON.stringify(villages));
-    renderVillages(villages);
   };
 
   // Handle search and sorting
@@ -286,96 +164,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return averageLandArea.toFixed(2);
   };
 
-  // Event listener to open the "Add Village" modal
-  addVillageBtn.addEventListener("click", () => {
-    addVillageModal.style.display = "flex";
-  });
-
-  // Event listeners to close modals
-  closeAddModalBtn.addEventListener("click", () => {
-    addVillageModal.style.display = "none";
-  });
-
   closeViewDetailsBtn.addEventListener("click", () => {
     viewDetailsModal.style.display = "none";
   });
 
   // Close modals when clicking outside them
   window.addEventListener("click", (event) => {
-    if (event.target === addVillageModal) {
-      addVillageModal.style.display = "none";
-    }
     if (event.target === viewDetailsModal) {
       viewDetailsModal.style.display = "none";
     }
-    if (event.target === updateVillageModal) {
-      updateVillageModal.style.display = "none";
-    }
-    if (event.target === demographicModal) {
-      demographicModal.style.display = "none";
-    }
   });
-
-  document
-    .querySelector("#addVillageModal form")
-    .addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      // Collect form data
-      const villageName = document.getElementById("villageName").value.trim();
-      const regionDistrict = document
-        .getElementById("regionDistrict")
-        .value.trim();
-      const landArea =
-        parseFloat(document.getElementById("landArea").value) || 0;
-      const latitude =
-        document.getElementById("latitude").value.trim() || "N/A";
-      const longitude =
-        document.getElementById("longitude").value.trim() || "N/A";
-      const tags = document
-        .getElementById("categoriesTags")
-        .value.split(",")
-        .map((tag) => tag.trim());
-      const imageFile = document.getElementById("uploadImage").files[0];
-      const image = imageFile ? URL.createObjectURL(imageFile) : "default.jpg";
-
-      // Validate required fields
-      if (!villageName || !regionDistrict) {
-        alert("Please fill in both the village name and region/district.");
-        return;
-      }
-
-      // Create a new village object
-      const newVillage = {
-        name: villageName,
-        location: regionDistrict,
-        landArea,
-        latitude,
-        longitude,
-        tags,
-        image,
-      };
-
-      // Add the new village to the list and save to local storage
-      villages.push(newVillage);
-      localStorage.setItem("villages", JSON.stringify(villages));
-      renderVillages(villages);
-
-      // Calculate and log the total number of Urban Areas
-      calculateTotalUrbanAreas();
-
-      // Calculate and update the average land area
-      calculateAverageLandArea();
-
-      // Reset form
-      document.getElementById("villageName").value = "";
-      document.getElementById("regionDistrict").value = "";
-      document.getElementById("landArea").value = "";
-      document.getElementById("latitude").value = "";
-      document.getElementById("longitude").value = "";
-      document.getElementById("categoriesTags").value = "";
-      document.getElementById("uploadImage").value = "";
-    });
 
   searchInput.addEventListener("input", handleSearchAndSort);
   sortSelect.addEventListener("change", handleSearchAndSort);
@@ -470,3 +268,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+

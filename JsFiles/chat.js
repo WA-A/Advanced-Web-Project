@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let activeAdmin = null; // track the active admin
 
-  const messages = {
+  // Retrieve messages from local storage or initialize if not present
+  const messages = JSON.parse(localStorage.getItem("messages")) || {
     Admin1: [
       {
         sender: "Admin1",
@@ -81,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // render messages for  specific admin
+  // render messages for specific admin
   const renderMessages = (adminName) => {
-    chatMessages.innerHTML = ""; // clear previous msg
+    chatMessages.innerHTML = ""; // clear previous messages
 
     if (messages[adminName]) {
       messages[adminName].forEach((msg) => {
@@ -102,17 +103,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // send message and store it for the active admin
   const sendMessage = () => {
     const messageText = chatInputField.value.trim();
-
     if (messageText === "" || !activeAdmin) return;
 
-    //message object create
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const isUser = currentUser && currentUser.role === "user";
+    const isAdmin = currentUser && currentUser.role === "admin";
+
     const message = {
-      sender: "You",
+      sender: isUser ? "You" : isAdmin ? activeAdmin : "Unknown",
       text: messageText,
-      type: "user",
+      type: isUser ? "user" : isAdmin ? "admin" : "unknown",
     };
 
-    // dtore the msg
     if (!messages[activeAdmin]) {
       messages[activeAdmin] = [];
     }
@@ -122,6 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chatInputField.value = "";
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Save messages to local storage
+    localStorage.setItem("messages", JSON.stringify(messages));
   };
 
   sendButton.addEventListener("click", sendMessage);
@@ -130,4 +135,96 @@ document.addEventListener("DOMContentLoaded", () => {
       sendMessage();
     }
   });
+
+  sendButton.addEventListener("click", sendMessage);
+  chatInputField.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  });
 });
+
+// Active Page
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPath = window.location.pathname;
+
+  const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
+
+  sidebarLinks.forEach((link) => {
+    if (link.href.includes(currentPath)) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutButton = document.getElementById("logoutButton");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    window.location.href = "index.html";
+  } else {
+    document.getElementById("adminName").textContent = currentUser.username;
+  }
+
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "index.html";
+    });
+  }
+});
+
+// Role User or Admin For VillageManagement
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='VillageManagement.html']"
+  );
+
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+        if (currentUser.role === "admin") {
+          window.location.href = "VillageManagement.html";
+        } else if (currentUser.role === "user") {
+          window.location.href = "VillageManagementForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+});
+
+// Role User or Admin For Gallary
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='Gallary.html']"
+  );
+
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+        if (currentUser.role === "admin") {
+          window.location.href = "Gallary.html";
+        } else if (currentUser.role === "user") {
+          window.location.href = "GallaryForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+});
+
+

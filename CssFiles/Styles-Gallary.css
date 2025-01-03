@@ -66,6 +66,75 @@ body {
   flex-grow: 1;
   padding: 20px;
 }
+.dashboard .content .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .content .modal .modal-content {
+  background: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+  min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.dashboard .content .modal .modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .content .modal .modal-content form label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #ffffff;
+}
+.dashboard .content .modal .modal-content form input[type="text"],
+.dashboard .content .modal .modal-content form input[type="number"],
+.dashboard .content .modal .modal-content form input[type="file"] {
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  background-color: #374151;
+  color: white;
+}
+.dashboard .content .modal .modal-content form input[type="text"]:focus,
+.dashboard .content .modal .modal-content form input[type="number"]:focus,
+.dashboard .content .modal .modal-content form input[type="file"]:focus {
+  outline: none;
+  border-color: #353c46;
+}
+.dashboard .content .modal .modal-content form button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #5a6479;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.dashboard .content .modal .modal-content form button:hover {
+  background-color: #8c94ac;
+}
+.dashboard .content .close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 24px;
+  color: #aaa;
+}
+.dashboard .content .close:hover {
+  color: #000;
+  cursor: pointer;
+}
 .dashboard .content .Images {
   margin-top: 5px;
 }

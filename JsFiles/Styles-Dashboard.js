@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    window.location.href = 'index.html'; 
+    window.location.href = "index.html";
   } else {
-    document.getElementById('adminName').textContent = currentUser.username;
+    document.getElementById("adminName").textContent = currentUser.username;
   }
 
-  
-  const ageCtx = document.getElementById("ageDistributionChart").getContext("2d");
+  const ageCtx = document
+    .getElementById("ageDistributionChart")
+    .getContext("2d");
   new Chart(ageCtx, {
     type: "pie",
     data: {
@@ -16,10 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
       datasets: [
         {
           data: [20, 30, 25, 15, 10],
-          backgroundColor: ["#a74c65 ", "#2f72a3", "#D4A32C", "#3c8489", "#7056b7"],
+          backgroundColor: [
+            "#a74c65 ",
+            "#2f72a3",
+            "#D4A32C",
+            "#3c8489",
+            "#7056b7",
+          ],
           borderWidth: 1,
-        }
-      ]
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -28,17 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
           callbacks: {
             label: function (tooltipItem) {
               const value = tooltipItem.raw;
-              const total = tooltipItem.dataset.data.reduce((acc, curr) => acc + curr, 0);
+              const total = tooltipItem.dataset.data.reduce(
+                (acc, curr) => acc + curr,
+                0
+              );
               const percentage = ((value / total) * 100).toFixed(2);
               return `${tooltipItem.label}: ${value} (${percentage}%)`;
-            }
-          }
-        }
-      }
-    }
+            },
+          },
+        },
+      },
+    },
   });
 
-  const genderCtx = document.getElementById("genderRatiosChart").getContext("2d");
+  const genderCtx = document
+    .getElementById("genderRatiosChart")
+    .getContext("2d");
   new Chart(genderCtx, {
     type: "pie",
     data: {
@@ -48,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
           data: [55, 45],
           backgroundColor: ["#2f72a3", "#a74c65 "],
           borderWidth: 1,
-        }
-      ]
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -58,21 +70,33 @@ document.addEventListener("DOMContentLoaded", () => {
           callbacks: {
             label: function (tooltipItem) {
               const value = tooltipItem.raw;
-              const total = tooltipItem.dataset.data.reduce((acc, curr) => acc + curr, 0);
+              const total = tooltipItem.dataset.data.reduce(
+                (acc, curr) => acc + curr,
+                0
+              );
               const percentage = ((value / total) * 100).toFixed(2);
               return `${tooltipItem.label}: ${value} (${percentage}%)`;
-            }
-          }
-        }
-      }
-    }
+            },
+          },
+        },
+      },
+    },
   });
 
   const popCtx = document.getElementById("populationChart").getContext("2d");
   new Chart(popCtx, {
     type: "bar",
     data: {
-      labels: ["Jabalia", "Beit Lahia", "Quds", "Shejaiya", "Hebron", "Nablus", "Ramallah", "Beit Jala"],
+      labels: [
+        "Jabalia",
+        "Beit Lahia",
+        "Quds",
+        "Shejaiya",
+        "Hebron",
+        "Nablus",
+        "Ramallah",
+        "Beit Jala",
+      ],
       datasets: [
         {
           label: "Population",
@@ -80,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
           backgroundColor: "#3c8489",
           borderColor: "#009fa6",
           borderWidth: 1.5,
-        }
-      ]
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -89,30 +113,32 @@ document.addEventListener("DOMContentLoaded", () => {
         y: {
           beginAtZero: true,
           ticks: {
-            callback: function(value) {
-              return value.toLocaleString(); 
-            }
-          }
-        }
+            callback: function (value) {
+              return value.toLocaleString();
+            },
+          },
+        },
       },
       plugins: {
         tooltip: {
           callbacks: {
             label: function (tooltipItem) {
-              return `${tooltipItem.label}: ${tooltipItem.raw.toLocaleString()}`;
-            }
-          }
-        }
-      }
-    }
+              return `${
+                tooltipItem.label
+              }: ${tooltipItem.raw.toLocaleString()}`;
+            },
+          },
+        },
+      },
+    },
   });
 
-  const map = L.map('map-container').setView([31.5, 34.4667], 10); 
+  const map = L.map("map-container").setView([31.5, 34.4667], 10);
 
-L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
+  L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
 
   const marker = L.marker([51.505, -0.09]).addTo(map);
 
@@ -120,33 +146,29 @@ L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const logoutButton = document.getElementById('logoutButton'); 
+  const logoutButton = document.getElementById("logoutButton");
 
   if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-      localStorage.removeItem('currentUser'); 
-      window.location.href = 'index.html'; 
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "index.html";
     });
   }
 });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
-  const totalVillagesElement = document.querySelector(".stat p"); 
-  const totalVillages = localStorage.getItem("totalVillages"); 
+  const totalVillagesElement = document.querySelector(".stat p");
+  const totalVillages = localStorage.getItem("totalVillages");
 
   if (totalVillages) {
-    totalVillagesElement.textContent = totalVillages; 
+    totalVillagesElement.textContent = totalVillages;
   } else {
-    totalVillagesElement.textContent = "0"; 
+    totalVillagesElement.textContent = "8";
   }
 });
 
-
-// Active Page 
+// Active Page
 document.addEventListener("DOMContentLoaded", () => {
-  
   const currentPath = window.location.pathname;
 
   const sidebarLinks = document.querySelectorAll(".sidebar nav ul li a");
@@ -155,38 +177,109 @@ document.addEventListener("DOMContentLoaded", () => {
     if (link.href.includes(currentPath)) {
       link.classList.add("active");
     } else {
-      link.classList.remove("active"); 
+      link.classList.remove("active");
     }
   });
 });
 
-
-
-
+//Average Land Area
 document.addEventListener("DOMContentLoaded", () => {
   const averageLandArea = localStorage.getItem("averageLandArea");
 
   if (averageLandArea !== null) {
-    document.getElementById("averageLandAreaDisplay").textContent = `Average Land Area: ${averageLandArea} hectares`;
+    const averageLandAreaDisplay = document.getElementById(
+      "averageLandAreaDisplay"
+    );
+    if (averageLandAreaDisplay) {
+      averageLandAreaDisplay.textContent = `Average Land Area: ${averageLandArea} hectares`;
+    }
   } else {
-    document.getElementById("averageLandAreaDisplay").textContent = "No land area data available.";
+    console.log("No average land area found.");
   }
 });
 
-
+// Total Number of Urban Areas
 document.addEventListener("DOMContentLoaded", () => {
   const totalUrbanAreas = localStorage.getItem("totalUrbanAreas");
 
   if (totalUrbanAreas !== null) {
-    document.getElementById("totalUrbanAreasDisplay").textContent = `Total Number of Urban Areas: ${totalUrbanAreas}`;
+    document.getElementById(
+      "totalUrbanAreasDisplay"
+    ).textContent = `${totalUrbanAreas}`;
   } else {
-    document.getElementById("totalUrbanAreasDisplay").textContent = "No urban areas data available.";
+    document.getElementById("totalUrbanAreasDisplay").textContent =
+      "No urban areas data available.";
+  }
+});
+
+
+//Average Land Area
+document.addEventListener("DOMContentLoaded", () => {
+  const averageLandArea = localStorage.getItem("averageLandArea");
+
+  if (averageLandArea !== null) {
+    const averageLandAreaDisplay = document.getElementById(
+      "averageLandAreaDisplay"
+    );
+    if (averageLandAreaDisplay) {
+      averageLandAreaDisplay.textContent = `Average Land Area: ${averageLandArea} hectares`;
+    }
+  } else {
+    console.log("No average land area found.");
   }
 });
 
 
 
+// Role User or Admin For VillageManagement
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='VillageManagement.html']"
+  );
 
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+        if (currentUser.role === "admin") {
+          window.location.href = "VillageManagement.html";
+        } else if (currentUser.role === "user") {
+          window.location.href = "VillageManagementForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+});
+
+// Role User or Admin For Gallary
+document.addEventListener("DOMContentLoaded", () => {
+  const villageManagementLink = document.querySelector(
+    "a[href='Gallary.html']"
+  );
+
+  if (villageManagementLink) {
+    villageManagementLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser) {
+        if (currentUser.role === "admin") {
+          window.location.href = "Gallary.html";
+        } else if (currentUser.role === "user") {
+          window.location.href = "GallaryForUser.html";
+        }
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+});
 
 
 

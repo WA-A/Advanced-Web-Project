@@ -207,35 +207,35 @@ export const ChatResolver = {
       }
     }
   },
-  Subscription: {
-    messageReceived: {
-      subscribe: withFilter(
-        (_, __, { pubsub }) => pubsub.asyncIterator('MESSAGE_RECEIVED'),
-        (payload, variables, { user }) => {
-          const message = payload.messageReceived;
-          return message.receiver.toString() === user.id;
-        }
-      )
-    },
+  // Subscription: {
+  //   messageReceived: {
+  //     subscribe: withFilter(
+  //       (_, __, { pubsub }) => pubsub.asyncIterator('MESSAGE_RECEIVED'),
+  //       (payload, variables, { user }) => {
+  //         const message = payload.messageReceived;
+  //         return message.receiver.toString() === user.id;
+  //       }
+  //     )
+  //   },
 
-    messageSent: {
-      subscribe: withFilter(
-        (_, __, { pubsub }) => pubsub.asyncIterator('MESSAGE_SENT'),
-        (payload, variables, { user }) => {
-          const message = payload.messageSent;
-          return message.sender.toString() === user.id;
-        }
-      )
-    },
+  //   messageSent: {
+  //     subscribe: withFilter(
+  //       (_, __, { pubsub }) => pubsub.asyncIterator('MESSAGE_SENT'),
+  //       (payload, variables, { user }) => {
+  //         const message = payload.messageSent;
+  //         return message.sender.toString() === user.id;
+  //       }
+  //     )
+  //   },
 
-    messageDeleted: {
-      subscribe: withFilter(
-        (_, { chatId }, { pubsub }) => 
-          pubsub.asyncIterator(`MESSAGE_DELETED_${chatId}`),
-        (payload, variables, { user }) => {
-          return true; // Both participants should see when a message is deleted
-        }
-      )
-    }
-  }
+  //   messageDeleted: {
+  //     subscribe: withFilter(
+  //       (_, { chatId }, { pubsub }) => 
+  //         pubsub.asyncIterator(`MESSAGE_DELETED_${chatId}`),
+  //       (payload, variables, { user }) => {
+  //         return true; // Both participants should see when a message is deleted
+  //       }
+  //     )
+  //   }
+  // }
 };

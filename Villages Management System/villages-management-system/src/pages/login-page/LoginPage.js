@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";  
+
+const adminAccounts = [
+  { username: "Wasan", password: "admin123" },
+  { username: "Masa", password: "admin456" },
+];
 
 const LoginPage = () => {
-  // Handle form submission
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate(); 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add login logic here
+    
+    const isAdmin = adminAccounts.some(
+      (account) => account.username === username && account.password === password
+    );
+
+    if (isAdmin) {
+      localStorage.setItem("user", JSON.stringify({ username, role: "admin" }));
+      navigate("/dashboard"); 
+    } else {
+      localStorage.setItem("user", JSON.stringify({ username, role: "user" }));
+      navigate("/dashboard"); 
+    }
   };
 
   return (
@@ -20,6 +40,8 @@ const LoginPage = () => {
               id="username"
               placeholder="Enter your username"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -29,6 +51,8 @@ const LoginPage = () => {
               id="password"
               placeholder="Enter your password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button type="submit" className="login-button">
@@ -36,7 +60,7 @@ const LoginPage = () => {
           </button>
           <p className="signup-text">
             Don't have an account?{" "}
-            <a href="/" id="signupLink">
+            <a href="../signup-page" id="signupLink">
               Sign up
             </a>
           </p>

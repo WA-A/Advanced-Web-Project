@@ -25,9 +25,6 @@ const App = () => {
     navigate("/login-page");
   };
 
-  const handleOverview = () => {
-    navigate("/dashboard");
-  };
   return (
     <div className="App">
       <div className="main-container">
@@ -38,10 +35,6 @@ const App = () => {
           </button>
           <button className="login" onClick={handleLogin}>
             Login
-          </button>
-
-          <button className="login" onClick={handleOverview}>
-            Overview
           </button>
         </div>
         <footer className="footer-text">

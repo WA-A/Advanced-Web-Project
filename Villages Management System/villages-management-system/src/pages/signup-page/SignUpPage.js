@@ -35,7 +35,7 @@ const SignUpPage = () => {
 
     if (isAdmin) {
       alert(`Welcome Admin ${username}!`);
-      window.location.href = "/dashboard"; // إعادة التوجيه إلى صفحة Overview
+      window.location.href = "/dashboard"; 
       return;
     }
 

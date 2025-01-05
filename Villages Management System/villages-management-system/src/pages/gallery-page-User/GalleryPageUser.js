@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Gallery.css";
 
 import QudsImage from "../../assets/images/Quds.jpg";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const GalleryPage = () => {
   const [currentUser] = useState(null);
+  const [username, setUsername] = useState("");
   const [imageList, setImageList] = useState([
     {
       src: QudsImage,
@@ -45,6 +46,16 @@ const GalleryPage = () => {
     },
   ]);
 
+
+   useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+          const parsedUser = JSON.parse(storedUser);
+          setUsername(parsedUser.username );
+        } 
+      }, []);
+
+
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
   };
@@ -75,13 +86,11 @@ const GalleryPage = () => {
         </nav>
         <div className="admin">
           <img src={AdminAvatar} alt="Admin Avatar" className="avatar" />
-          <div className="admin-info">
-            <span id="adminName">{currentUser?.username}</span>
+              <span id="adminName"> {username}</span>
             <Link to="/" onClick={handleLogout} id="logoutButton">
               Logout
             </Link>
           </div>
-        </div>
       </aside>
 
       <main className="content-gallery">

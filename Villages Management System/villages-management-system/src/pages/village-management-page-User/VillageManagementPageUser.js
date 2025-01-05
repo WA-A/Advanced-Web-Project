@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Village.css";
 import AdminAvatar from "../../assets/images/Profile.png";
 
 function VillageManagement() {
   const [adminName, setAdminName] = useState("Admin");
+  const [username, setUsername] = useState("");
   const [villageList, setVillageList] = useState([
     {
       name: "Jabalia",
@@ -74,6 +75,15 @@ function VillageManagement() {
     village.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+
+   useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        setUsername(parsedUser.username );
+      } 
+    }, []);
+
   return (
     <div className="dashboard-village-management">
       <aside className="sidebar">
@@ -98,7 +108,7 @@ function VillageManagement() {
         </nav>
         <div className="admin">
           <img src={AdminAvatar} alt="Admin Avatar" className="avatar" />
-          <span>{adminName}</span>
+         <span id="adminName"> {username}</span>
           <a href="/" id="logoutButton">
             Logout
           </a>

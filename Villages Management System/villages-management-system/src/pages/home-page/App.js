@@ -14,7 +14,6 @@ import ChatPage from "../chat-page/ChatPage";
 import VillageManagement from "../village-management-page/VillageManagementPage";
 import VillageManagementUser from "../village-management-page-User/VillageManagementPageUser.js";
 
-
 import "./App.css";
 
 const App = () => {

@@ -255,7 +255,8 @@ const Dashboard = () => {
             </div>
             <div className="stat">
               <h3>Total Number of Urban Areas</h3>
-              <p id="totalUrbanAreasDisplay"></p>
+              {/* <p id="totalUrbanAreasDisplay">3</p> */}
+              <p>3</p>
             </div>
             <div className="stat">
               <h3>Total Population Size</h3>

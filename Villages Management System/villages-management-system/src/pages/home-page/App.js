@@ -9,8 +9,11 @@ import SignUpPage from "../signup-page/SignUpPage";
 import LoginPage from "../login-page/LoginPage";
 import Dashboard from "../dashboard-page/DashboardPage";
 import GalleryPage from "../gallery-page/GalleryPage";
+import GalleryPageUser from "../gallery-page-User/GalleryPageUser.js";
 import ChatPage from "../chat-page/ChatPage";
 import VillageManagement from "../village-management-page/VillageManagementPage";
+import VillageManagementUser from "../village-management-page-User/VillageManagementPageUser.js";
+
 
 import "./App.css";
 
@@ -53,8 +56,10 @@ const AppWrapper = () => (
       <Route path="/login-page" element={<LoginPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/gallery" element={<GalleryPage />} />
+      <Route path="/gallery-user" element={<GalleryPageUser />} />
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/village-management" element={<VillageManagement />} />
+      <Route path="/village-management-user" element={<VillageManagementUser />} />
     </Routes>
   </Router>
 );

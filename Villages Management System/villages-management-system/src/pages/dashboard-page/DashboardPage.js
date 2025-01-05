@@ -11,9 +11,14 @@ const Dashboard = () => {
   const genderChartRef = useRef(null);
   const populationChartRef = useRef(null);
   const mapRef = useRef(null);
+  const [username, setUsername] = useState("");
      
   useEffect(() => {
-    
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUsername(parsedUser.username );
+    } 
     
 
     const userRole = localStorage.getItem("userRole") || "user"; 

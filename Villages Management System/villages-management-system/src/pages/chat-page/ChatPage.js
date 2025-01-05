@@ -10,8 +10,15 @@ const ChatPage = () => {
   const [searchText, setSearchText] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [newMessage, setNewMessage] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUsername(parsedUser.username );
+    } 
+
     const savedMessages = JSON.parse(localStorage.getItem("messages")) || {
       Admin1: [
         {
@@ -133,7 +140,7 @@ const ChatPage = () => {
         </nav>
         <div className="admin">
           <img src={AdminAvatar} alt="Admin Avatar" className="avatar" />
-          <span id="adminName">{currentUser?.username}</span>
+          <span id="adminName"> {username}</span>
           <a
             href="/"
             id="logoutButton"

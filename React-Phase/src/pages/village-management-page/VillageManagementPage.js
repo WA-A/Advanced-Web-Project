@@ -77,6 +77,7 @@ function VillageManagement() {
     setCurrentVillage(selectedVillage);
     setIsDemographicModalVisible(true);
   };
+  
 
   const closeDemographicModal = () => {
     setIsDemographicModalVisible(false);
@@ -85,48 +86,41 @@ function VillageManagement() {
   // Handle form submission for updating demographic data
   const handleDemographicData = (event) => {
     event.preventDefault();
-
-    const villageName = document.getElementById(
-      "demographicVillageName"
-    ).textContent;
-
-    const index = villageList.findIndex(
-      (village) => village.name === villageName
-    );
-
-    if (index !== -1) {
-      const populationSize = document.getElementById("populationSize").value;
-      const ageDistribution = document.getElementById("ageDistribution").value;
-      const genderRatios = document.getElementById("genderRatios").value;
-      const populationGrowthRate = document.getElementById(
-        "populationGrowthRate"
-      ).value;
-
-      const updatedVillage = {
-        ...villageList[index],
-        demographics: {
-          populationSize,
-          ageDistribution,
-          genderRatios,
-          populationGrowthRate,
-        },
-      };
-
-      const updatedVillages = villageList.map((village) =>
-        village.name === villageName ? updatedVillage : village
-      );
-
-      localStorage.setItem("villages", JSON.stringify(updatedVillages));
-
-      setVillageList(updatedVillages);
-
-      alert("Demographic data updated successfully!");
-
-      closeDemographicModal();
-    } else {
-      alert("Village not found!");
+  
+    if (!currentVillage) {
+      alert("Please select a valid village.");
+      return;
     }
+  
+    const populationSize = document.getElementById("populationSize").value;
+    const ageDistribution = document.getElementById("ageDistribution").value;
+    const genderRatios = document.getElementById("genderRatios").value;
+    const populationGrowthRate = document.getElementById(
+      "populationGrowthRate"
+    ).value;
+  
+    const updatedVillage = {
+      ...currentVillage,
+      demographics: {
+        populationSize,
+        ageDistribution,
+        genderRatios,
+        populationGrowthRate,
+      },
+    };
+  
+    const updatedVillages = villageList.map((village) =>
+      village.name === currentVillage.name ? updatedVillage : village
+    );
+  
+    setVillageList(updatedVillages);
+    localStorage.setItem("villages", JSON.stringify(updatedVillages));
+  
+    alert("Demographic data updated successfully!");
+  
+    closeDemographicModal();
   };
+  
 
   const openUpdateModal = (index) => {
     setSelectedVillage(villageList[index]);
@@ -622,7 +616,7 @@ function VillageManagement() {
               </span>
               <h2>
                 Add Demographic Data for
-                <span id="demographicVillageName"></span>
+                <span id="demographicVillageName">{currentVillage?.name}</span>
               </h2>
               <form id="demographicForm" onSubmit={handleDemographicData}>
                 <label htmlFor="populationSize">Population Size:</label>

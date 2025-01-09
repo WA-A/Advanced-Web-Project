@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import UserModel from './../Model/User.Model.js';
 
-export const Roles = { // --> array تحتوي من له صلاحية للاستخدام
+export const Roles = { 
     Admin:'Admin',
     User:'User'
 }
@@ -11,7 +11,7 @@ export const auth = (AccessRole = []) =>{
     return async (req,res,next)=>{
         const {authorization} = req.headers;
         
-        if(!authorization.startsWith(process.env.BEARERKEY)){ // bearer token the before is named basic token
+        if(!authorization.startsWith(process.env.BEARERKEY)){ 
             //return res.json({message:"Invalid token"});
             return next(new Error (`Invalid token`,401));
 
@@ -32,7 +32,7 @@ export const auth = (AccessRole = []) =>{
             return res.status(404).json({message:" User Not found"});
         }
         
-        if(!AccessRole.includes(authUser.Role)){ // authUser.Role --> صلاحية المستخدم الحالي
+        if(!AccessRole.includes(authUser.Role)){ 
             return res.status(403).json({message:" Not auth User"});
 
         }

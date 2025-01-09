@@ -32,7 +32,7 @@ export const VillageResolvers = {
             ImageUrl,
             Categories,
           },
-          { new: true } // Return the updated document
+          { new: true } 
         );
 
         if (!updatedVillage) {

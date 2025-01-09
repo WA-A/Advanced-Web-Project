@@ -31,7 +31,7 @@ const villageSchema = new Schema({
   DemographicData: {
     PopulationSize: {
       type: Number,
-      required: false, // Make it optional for now
+      required: false, 
     },
     AgeDistribution: {
       type: String,

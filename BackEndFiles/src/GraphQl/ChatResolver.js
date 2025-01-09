@@ -1,10 +1,9 @@
 import ChatModel from '../Model/Chat.Model.js';
-import UserModel from '../Model/User.Model.js'; // Assuming User model exists
-
+import UserModel from '../Model/User.Model.js'; 
 export const ChatResolver = {
   Mutation: {
     sendMessage: async (_, { input }, context) => {
-      const { user } = context;  // user will be fetched from token in context
+      const { user } = context;  
   
       if (!user) {
         throw new Error("Authentication required");
@@ -13,40 +12,35 @@ export const ChatResolver = {
       const { content, receiverId } = input;
   
       try {
-        // Ensure the receiverId is valid
         const receiver = await UserModel.findById(receiverId);
         if (!receiver) {
           throw new Error("Receiver not found");
         }
   
-        // Prepare the new message
         const newMessage = {
           content,
-          sender: user._id,  // sender is determined from the user (from token)
+          sender: user._id,  
           receiver: receiverId,  
           timestamp: new Date(),
         };
   
-        // Find the chat between the sender and receiver
         let chat = await ChatModel.findOne({
           participants: { $all: [user._id, receiverId] }
         });
   
         if (!chat) {
-          // If no chat exists, create a new one and add participantsType as 'User'
+          
           chat = new ChatModel({
             participants: [user._id, receiverId],
             messages: [newMessage],
-            participantsType: 'User'  // Set the participantsType to 'User'
+            participantsType: 'User'  
           });
           await chat.save();
         } else {
-          // If chat exists, just add the new message
           chat.messages.push(newMessage);
           await chat.save();
         }
 
-        // Return the new message along with receiver details
         const messageResponse = {
           content: newMessage.content,
           receiver: {
@@ -56,7 +50,6 @@ export const ChatResolver = {
           timestamp: newMessage.timestamp,
         };
   
-        // Publish the new message if you're using PubSub
         pubsub.publish('messageSent', {
           messageSent: messageResponse,
         });
@@ -87,7 +80,6 @@ export const ChatResolver = {
         message.remove();
         await chat.save();
 
-        // Trigger subscription
         pubsub.publish(`MESSAGE_DELETED_${chat.id}`, {
           messageDeleted: messageId
         });
@@ -116,28 +108,24 @@ export const ChatResolver = {
           .populate('messages.receiver');
         
         if (!chat) {
-          // If no chat exists, create a new one
           chat = new ChatModel({
             participants: [user.id, participantId],
             messages: [],
-            participantsType: 'User', // assuming 'User' as a default value
+            participantsType: 'User', 
           });
           await chat.save();
         }
       
         console.log('Chat fetched:', chat);
     
-        // Ensure participants' ids are serialized as strings
-        chat.participants = chat.participants.map(participant => {
-          // Check if participant is an object or just an ObjectId
+        chat.participants = ChatModel.participants.map(participant => {
           if (participant instanceof mongoose.Types.ObjectId) {
-            return { id: participant.toString() };  // If it's an ObjectId, convert to string
+            return { id: participant.toString() };  
           }
           
-          // If it's a populated document, we can safely access its id and convert to string
           return {
             ...participant.toObject(),
-            id: participant._id.toString()  // Convert ObjectId to String
+            id: participant._id.toString() 
           };
         });
     
@@ -153,7 +141,7 @@ export const ChatResolver = {
       if (!user) throw new AuthenticationError('Not authenticated');
 
       try {
-        const chats = await Chat.find({
+        const chats = await ChatModel.find({
           participants: user.id
         }).populate('participants')
           .populate('messages.sender')
@@ -170,7 +158,7 @@ export const ChatResolver = {
       if (!user) throw new AuthenticationError('Not authenticated');
 
       try {
-        const chat = await Chat.findById(chatId)
+        const chat = await ChatModel.findById(chatId)
           .populate('messages.sender')
           .populate('messages.receiver');
 
@@ -190,7 +178,7 @@ export const ChatResolver = {
       if (!user) throw new AuthenticationError('Not authenticated');
 
       try {
-        const chat = await Chat.findById(chatId);
+        const chat = await ChatModel.findById(chatId);
         if (!chat) throw new UserInputError('Chat not found');
 
         if (!chat.participants.includes(user.id)) {

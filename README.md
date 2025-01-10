@@ -71,7 +71,9 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 - Populate the platform with simulated data for testing and demonstration purposes.  
 - Implement clean and functional UI designs to prioritize user experience.
 
-  ### Phase 2: React + Tailwind CSS
+***
+
+### Phase 2: React + Tailwind CSS
 
 **Objectives**: 
 
@@ -79,6 +81,8 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 - Integrate Tailwind CSS for styling to enhance the visual appeal and responsiveness of the application.
 - Implement state management to handle village data dynamically.
 - Create reusable components for village cards, modals, and forms.
+
+***
 
 ### Phase 3: Node.js Backend and Integration
 
@@ -95,7 +99,7 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 
 ## 💻 Technologies Used
 
-- **Frontend Phase 1**: HTML, CSS (LESS), JavaScript ,React, Tailwind CSS
+- **Frontend Phase 1**: HTML, CSS (LESS), JavaScript 
 - **Frontend Phase 2**: React, Tailwind CSS
 - **Visualization**: Chart.js, Leaflet.js for maps  
 - **Version Control**: GitHub

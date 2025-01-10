@@ -71,13 +71,37 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 - Populate the platform with simulated data for testing and demonstration purposes.  
 - Implement clean and functional UI designs to prioritize user experience.
 
+  ### Phase 2: React + Tailwind CSS
+
+**Objectives**: 
+
+- Refactor the front-end code to use React for building the user interface.
+- Integrate Tailwind CSS for styling to enhance the visual appeal and responsiveness of the application.
+- Implement state management to handle village data dynamically.
+- Create reusable components for village cards, modals, and forms.
+
+### Phase 3: Node.js Backend and Integration
+
+**Objectives**: 
+
+- Develop a Node.js backend to handle data storage and retrieval.
+- Set up GraphQL to manage village data effectively.
+- Integrate the front-end application with the backend to fetch and display real village data.
+- Implement user authentication and authorization for admin functionalities.
+- Ensure proper error handling and validation for all API endpoints.
+- Conduct end-to-end testing to ensure the application works seamlessly across the frontend and backend.
+
 ---
 
 ## 💻 Technologies Used
 
-- **Frontend**: HTML, CSS (LESS), JavaScript 
+- **Frontend Phase 1**: HTML, CSS (LESS), JavaScript ,React, Tailwind CSS
+- **Frontend Phase 2**: React, Tailwind CSS
 - **Visualization**: Chart.js, Leaflet.js for maps  
-- **Version Control**: GitHub  
+- **Version Control**: GitHub
+- **Backend**: Node.js, Express.js, GraphQL
+- **Database**: MongoDB or PostgreSQL
+- **Authentication**: JSON Web Tokens (JWT)
 
 ---
 
@@ -93,7 +117,6 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 
 Together, we can transform how village data is managed and shared. Let’s create a platform that empowers communities through transparency and collaboration. Welcome to the **Villages Management System**! 🚀
 
-<!-- - **Notification Service**: Provide real-time notifications for changes in village data.-->
 
 
 

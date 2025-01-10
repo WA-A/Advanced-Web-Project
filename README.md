@@ -104,7 +104,7 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 - **Visualization**: Chart.js, Leaflet.js for maps  
 - **Version Control**: GitHub
 - **Backend**: Node.js, Express.js, GraphQL
-- **Database**: MongoDB or PostgreSQL
+- **Database**: MongoDB ,Postman
 - **Authentication**: JSON Web Tokens (JWT)
 
 ---

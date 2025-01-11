@@ -63,7 +63,7 @@ function VillageManagement() {
         },
       ];
       setVillageList(defaultVillages);
-      localStorage.setItem("villages", JSON.stringify(defaultVillages)); // Save the default villages to localStorage
+      localStorage.setItem("villages", JSON.stringify(defaultVillages)); 
     }
   }, []);
 

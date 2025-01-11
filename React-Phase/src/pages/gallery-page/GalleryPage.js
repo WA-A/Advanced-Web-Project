@@ -75,7 +75,7 @@ const GalleryPage = () => {
         const newImage = { src: reader.result, alt: description, description };
         setImageList((prevList) => {
           const updatedList = [...prevList, newImage];
-          localStorage.setItem("imageList", JSON.stringify(updatedList)); // Save to localStorage
+          localStorage.setItem("imageList", JSON.stringify(updatedList)); 
           return updatedList;
         });
         setIsModalOpen(false);

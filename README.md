@@ -63,7 +63,7 @@ With its intuitive design and robust backend, VMS enhances the way village data 
 
 ## 🎯 Project Delivery Milestones
 
-### Phase 1: Front-End Development with Fake Data  
+### Phase 1: Front-End Development with LocalStorge  
 
 **Objectives**:  
 - Build a responsive front-end using **HTML**, **CSS (LESS)**, and **JavaScript**.  
